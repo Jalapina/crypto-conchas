@@ -213,8 +213,8 @@ const CryptoConchas = ({ drizzle, drizzleState }) => {
           tokenId += 1
           
           const { hash } = await fleekStorage.upload({
-            apiKey: "ezmuRXUXulan6Kj0PXU4LA==",
-            apiSecret: "W7gKpPrEtZGS9WGhZyYa130VXtJZ9CROCguNoxHLq2A=",
+            apiKey: "5p1Nxgb8eIEOEYjwduM4Fg==",
+            apiSecret: "HC4pKXrmEITQwS0bC9fXwrbiPnwEhfUcXoao7JoHCu8=",
             key: `nft/${tokenId}-${timestamp}`,
             data: artwork[i],
           });
@@ -229,8 +229,8 @@ const CryptoConchas = ({ drizzle, drizzleState }) => {
           }
     
           const { publicUrl } = await fleekStorage.upload({
-            apiKey: "ezmuRXUXulan6Kj0PXU4LA==",
-            apiSecret: "W7gKpPrEtZGS9WGhZyYa130VXtJZ9CROCguNoxHLq2A=",
+            apiKey: "5p1Nxgb8eIEOEYjwduM4Fg==",
+            apiSecret: "HC4pKXrmEITQwS0bC9fXwrbiPnwEhfUcXoao7JoHCu8=",
             key: `nft/${tokenId}-${timestamp}`,
             data: JSON.stringify(url),
           });
