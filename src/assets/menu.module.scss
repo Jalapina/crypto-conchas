@@ -1,0 +1,48 @@
+@import url(https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap);
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: black;
+  z-index: 1031;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: all 0.35s;
+
+  cursor: pointer;
+
+  &.open {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  a {
+    pointer-events: all;
+  }
+}
+
+.cats {
+  color: white;
+  text-decoration: none;
+}
+
+.h1 {
+  font: 100 4vh;
+  font-family: "Trade Winds", cursive;
+}
+
+.h3 {
+  font: 700 4vh;
+  font-family: "Trade Winds", cursive;
+}
