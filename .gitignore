@@ -22,5 +22,5 @@ yarn-debug.log*
 yarn-error.log*
 
 /backend
-nft-images
+/nft-images
 /conchas
