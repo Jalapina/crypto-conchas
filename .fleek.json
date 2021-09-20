@@ -3,6 +3,6 @@
       "image": "node:alpine",
       "command": "npm install && npm run build && echo $SOME_ENV",
       "publicDir": "build",
-      "baseDir": "/build/index.html"
+      "baseDir": "/index.html"
     }
    }
