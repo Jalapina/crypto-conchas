@@ -7,6 +7,7 @@ import "./assets/index.sass"
 import "./assets/loader.css"
 import { AppContext } from "./components/layout.js";
 import Nft from './components/nft.js'
+import Gallery from './components/gallery.js'
 
 const { ContractData } = newContextComponents;
 
@@ -273,7 +274,7 @@ const CryptoConchas = ({ drizzle, drizzleState }) => {
           {drizzle.contractList[0].address}
           </a>
       </div>
-
+      <Gallery />
       <Jumbotron>
         <div className="add-nft-title">
           <p>This app runs on the Rinkeby Testnet</p>

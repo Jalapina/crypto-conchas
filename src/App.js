@@ -14,7 +14,6 @@ const App = () => {
       <DrizzleContext.Consumer>
         {drizzleContext => {
           const { drizzle, drizzleState, initialized } = drizzleContext;
-
           if (!initialized || drizzleState.web3.status === 'failed') {
             return (
               <Jumbotron className="loading-jumbo">
