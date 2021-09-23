@@ -30,8 +30,6 @@ const Nft = ({color,drizzle,drizzleState}) => {
 
   const createNFTTransaction = async (hash,publicUrl) => {
         
-      console.log("hash",hash,publicUrl)
-
       const tokenURI = publicUrl;
     
       const removeFromQueue = () => {
@@ -41,12 +39,12 @@ const Nft = ({color,drizzle,drizzleState}) => {
     
       try {
         setTxQueue([...txQueue, tokenURI]);
-  
+
         await drizzle.contracts.CryptoConchasRinkeby.methods.mint(hash,publicUrl).send({from: drizzleState.accounts[0]});
-  
+
         setNftData(initialNftState);
-      } catch (e) {
-        console.error(e);
+      }catch(e) {
+          console.error(e);
           setNftData(initialNftState);      
           removeFromQueue(tokenURI);
         }
@@ -101,7 +99,7 @@ const Nft = ({color,drizzle,drizzleState}) => {
           <div className="modal-container">
 
             <div className="nft-image-focus">
-              <img className="artwork" width="450px" src={`https://storageapi.fleek.co/jalapina-team-bucket/nft/conchas/${color}-concha.png`} />
+              <img className="artwork" width="90%" src={`https://storageapi.fleek.co/jalapina-team-bucket/nft/conchas/${color}-concha.png`} />
             </div>
             
             <div className="token-options">
@@ -130,7 +128,7 @@ const Nft = ({color,drizzle,drizzleState}) => {
 
       </div>
       <div className="landing-display">
-        <img className="artwork" width="250px" src={`https://storageapi.fleek.co/jalapina-team-bucket/nft/conchas/${color}-concha.png`} />
+        <img className="artwork" width="95%" src={`https://storageapi.fleek.co/jalapina-team-bucket/nft/conchas/${color}-concha.png`} />
       </div>
     </div>
   )

@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 import { Spinner, Button, Jumbotron } from 'react-bootstrap';
 import fleekStorage from '@fleekhq/fleek-storage-js';
 import { newContextComponents, AccountData } from "@drizzle/react-components";
-import ImageUploader from "react-images-upload";
 import "./assets/index.sass"
 import "./assets/loader.css"
 import { AppContext } from "./components/layout.js";
 import Inventory from "./components/inventory.js";
 import Nft from './components/nft.js'
+import Uploader from './components/uploader.js'
 import Gallery from './components/gallery.js'
 
 const { ContractData } = newContextComponents;
@@ -81,7 +81,7 @@ const DisplayImage = (NftData) => {
   }, [NftData.tokenId]);
 
   return (
-    <div className="token-container">
+    <div>
 
       <ContractData
         drizzle={NftData.drizzle}
@@ -90,9 +90,7 @@ const DisplayImage = (NftData) => {
         method="CID"
         methodArgs={[NftData.tokenId]}
         render={(cid) =>(
-          <div className="token-container">
-            <Nft cid={cid} address={NftData.address} owner={owner} metadata={nftMetadata} tokenId={NftData.tokenId} />
-          </div>
+          <Nft cid={cid} address={NftData.address} owner={owner} metadata={nftMetadata} tokenId={NftData.tokenId} />
         )}
       />
 
@@ -158,46 +156,6 @@ const CryptoConchas = ({ drizzle, drizzleState }) => {
       removeFromQueue(tokenURI);
     }
   };
-  
-
-  // const handleButtonClick = async (newTokenId) => {
-
-  //   setLoading(true)
-    
-  //   try {
-  //     const date = new Date();
-  //     const timestamp = date.getTime();
-
-  //     const { hash } = await fleekStorage.upload({
-  //       apiKey: "ezmuRXUXulan6Kj0PXU4LA==",
-  //       apiSecret: "W7gKpPrEtZGS9WGhZyYa130VXtJZ9CROCguNoxHLq2A=",
-  //       key: `nft/${newTokenId}-${timestamp}`,
-  //       data: artwork,
-  //     });
-
-  //     const url = {
-  //       name: nftData.name,
-  //       category: nftData.category.toLowerCase(),
-  //       description: nftData.category,
-  //       image_url: "https://ipfs.fleek.co/ipfs/"+hash,
-  //       image_hash: hash
-  //     }
-
-  //     const { publicUrl } = await fleekStorage.upload({
-  //       apiKey: "ezmuRXUXulan6Kj0PXU4LA==",
-  //       apiSecret: "W7gKpPrEtZGS9WGhZyYa130VXtJZ9CROCguNoxHLq2A=",
-  //       key: `nft/${newTokenId}-${timestamp}`,
-  //       data: JSON.stringify(url),
-  //     });
-      
-  //     setLoading(false);
-  //     clearPreview();
-  //     createNFTTransaction(hash, publicUrl);
-  //   } catch (e) {
-  //     console.error(e);
-  //     setLoading(false);
-  //   }
-  // };
 
   const handleBatchMint = async (newTokenId) => {
     console.log(artwork)
@@ -265,100 +223,23 @@ const CryptoConchas = ({ drizzle, drizzleState }) => {
 
   return (
     <div className="App">
+
       <div className="subtitle">
-        {"ERC-721 Address: "}
+        <p className="other-font">Smart Contract:</p>
         <a
           href={`https://Rinkeby.etherscan.io/address/${drizzle.contractList[0].address}`}
           target="_blank"
           rel="noopener noreferrer"
         >
-          {drizzle.contractList[0].address}
-          </a>
+          <p>&nbsp;{sliptAddressText(drizzle.contractList[0].address)}</p>
+        </a>
       </div>
+      
       <Inventory drizzle={drizzle} drizzleState={drizzleState} />
+
       <Gallery drizzle={drizzle} drizzleState={drizzleState} />
-      <Jumbotron>
-        <div className="add-nft-title">
-          <p>This app runs on the Rinkeby Testnet</p>
-        </div>
-        <div className="steps">
-          <span>Upload a concha</span>
-        </div>
-        <div className="uploader">
-          <ImageUploader
-            withIcon={true}
-            buttonText="Choose image"
-            onChange={onDrop}
-            imgExtension={[".jpg",".mov",".jpeg", ".gif", ".png", ".gif"]}
-            maxFileSize={5242880}
-            singleImage={false}
-            withPreview
-            ref={iu => imageUploaderRef.current = iu}
-          />
-        </div>
 
-        <div className="steps">
-          <span>Create an NFT!</span>
-          <div>
-            Connect to the Rinkeby Network on Metamask
-          </div>
-        </div>
-
-        <div className="nft-form-container">
-          <form>
-            <input disabled={!artwork} type="text" placeholder="Your NFT name" name="name" value={nftData.name} required onChange={e => setNftData({...nftData,name:e.currentTarget.value})} />
-            <input disabled={!artwork} type="text" placeholder="NFT category" name="category" value={nftData.category} required onChange={e => setNftData({...nftData,category:e.currentTarget.value})} />
-          </form>
-        </div>
-
-        <ContractData
-          drizzle={drizzle}
-          drizzleState={drizzleState}
-          contract="CryptoConchasRinkeby"
-          method="totalSupply"
-          render={(supply) => (
-            <div>
-              <Button
-                disabled={!artwork || loading || !isEnabled}
-                onClick={() => handleBatchMint(supply)}
-                className="button"
-              >
-              {loading
-                ? <Spinner animation="border" variant="light" size="sm" />
-                : <span>Create NFT</span>
-              }
-            </Button>
-          </div>
-          )}
-        />
-
-        <div className="steps">
-          Your artwork will appear in your collection once the transaction is accepted
-        </div>
-
-        <div>
-          {txQueue.length === 1 && (
-            <div>
-              <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-              <div>Minting a new token...</div>
-            </div>
-          )}
-          {txQueue.length > 1 && (
-            <div>
-              <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-              <div>Minting {txQueue.length} new tokens...</div>
-            </div>
-          )}
-        </div>
-        {
-          txQueue.length > 0 && (
-            <div>
-              <Spinner animation="border" />
-            </div>
-          )
-        }
-
-      </Jumbotron>
+      {/* <Uploader drizzle={drizzle} drizzleState={drizzleState} /> */}
 
     </div>
     

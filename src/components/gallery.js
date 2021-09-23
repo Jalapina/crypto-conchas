@@ -26,7 +26,9 @@ const Gallery = ({ drizzle, drizzleState }) => {
   const ImageList = imageArray.map((color,index) => (
     <li className={'gallery'}>
         <div onClick={toggleModal}>
-            <h2>{color} concha #{index+1}</h2>
+            <div className="token-name-container">
+              <h2>{color} concha</h2><h3 className="token-id">#{index+1}</h3>
+            </div>
             <Nft drizzle={drizzle} drizzleState={drizzleState} color={color} />
         </div>
     </li>

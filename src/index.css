@@ -18,3 +18,8 @@ code {
   font-family: Superfats;
   src: url("./assets/fonts/Superfats-6PRM.ttf")
 }
+
+@font-face{
+  font-family: Bounties;
+  src: url("./assets/fonts/Bounties-8MjWZ.ttf")
+}
