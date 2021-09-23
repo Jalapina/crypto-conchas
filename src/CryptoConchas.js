@@ -6,6 +6,7 @@ import ImageUploader from "react-images-upload";
 import "./assets/index.sass"
 import "./assets/loader.css"
 import { AppContext } from "./components/layout.js";
+import Inventory from "./components/inventory.js";
 import Nft from './components/nft.js'
 import Gallery from './components/gallery.js'
 
@@ -23,8 +24,8 @@ const DisplayImage = (NftData) => {
     dispatch({ type: 'UPDATE_INDEX', data: newValue});
   };
 
-  const [nftMetadata, setNftMetadata] = useState()
-  const [owner, setOwner] = useState()
+  const [nftMetadata, setNftMetadata] = useState();
+  const [owner, setOwner] = useState();
 
   const sliptAddressText = (address) =>{
     return address.split("").splice(-5);
@@ -159,44 +160,44 @@ const CryptoConchas = ({ drizzle, drizzleState }) => {
   };
   
 
-  const handleButtonClick = async (newTokenId) => {
+  // const handleButtonClick = async (newTokenId) => {
 
-    setLoading(true)
+  //   setLoading(true)
     
-    try {
-      const date = new Date();
-      const timestamp = date.getTime();
+  //   try {
+  //     const date = new Date();
+  //     const timestamp = date.getTime();
 
-      const { hash } = await fleekStorage.upload({
-        apiKey: "ezmuRXUXulan6Kj0PXU4LA==",
-        apiSecret: "W7gKpPrEtZGS9WGhZyYa130VXtJZ9CROCguNoxHLq2A=",
-        key: `nft/${newTokenId}-${timestamp}`,
-        data: artwork,
-      });
+  //     const { hash } = await fleekStorage.upload({
+  //       apiKey: "ezmuRXUXulan6Kj0PXU4LA==",
+  //       apiSecret: "W7gKpPrEtZGS9WGhZyYa130VXtJZ9CROCguNoxHLq2A=",
+  //       key: `nft/${newTokenId}-${timestamp}`,
+  //       data: artwork,
+  //     });
 
-      const url = {
-        name: nftData.name,
-        category: nftData.category.toLowerCase(),
-        description: nftData.category,
-        image_url: "https://ipfs.fleek.co/ipfs/"+hash,
-        image_hash: hash
-      }
+  //     const url = {
+  //       name: nftData.name,
+  //       category: nftData.category.toLowerCase(),
+  //       description: nftData.category,
+  //       image_url: "https://ipfs.fleek.co/ipfs/"+hash,
+  //       image_hash: hash
+  //     }
 
-      const { publicUrl } = await fleekStorage.upload({
-        apiKey: "ezmuRXUXulan6Kj0PXU4LA==",
-        apiSecret: "W7gKpPrEtZGS9WGhZyYa130VXtJZ9CROCguNoxHLq2A=",
-        key: `nft/${newTokenId}-${timestamp}`,
-        data: JSON.stringify(url),
-      });
+  //     const { publicUrl } = await fleekStorage.upload({
+  //       apiKey: "ezmuRXUXulan6Kj0PXU4LA==",
+  //       apiSecret: "W7gKpPrEtZGS9WGhZyYa130VXtJZ9CROCguNoxHLq2A=",
+  //       key: `nft/${newTokenId}-${timestamp}`,
+  //       data: JSON.stringify(url),
+  //     });
       
-      setLoading(false);
-      clearPreview();
-      createNFTTransaction(hash, publicUrl);
-    } catch (e) {
-      console.error(e);
-      setLoading(false);
-    }
-  };
+  //     setLoading(false);
+  //     clearPreview();
+  //     createNFTTransaction(hash, publicUrl);
+  //   } catch (e) {
+  //     console.error(e);
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleBatchMint = async (newTokenId) => {
     console.log(artwork)
@@ -274,7 +275,8 @@ const CryptoConchas = ({ drizzle, drizzleState }) => {
           {drizzle.contractList[0].address}
           </a>
       </div>
-      <Gallery />
+      <Inventory drizzle={drizzle} drizzleState={drizzleState} />
+      <Gallery drizzle={drizzle} drizzleState={drizzleState} />
       <Jumbotron>
         <div className="add-nft-title">
           <p>This app runs on the Rinkeby Testnet</p>
@@ -357,66 +359,6 @@ const CryptoConchas = ({ drizzle, drizzleState }) => {
         }
 
       </Jumbotron>
-
-      <div className="collection-title"><h1>Collection</h1></div>
-
-      <div className="colleciton-subtitle">These fine pieces of art belong to: 
-        <a href={`https://rinkeby.etherscan.io/address/${drizzleState.accounts[0]}`} target="_blank" rel="noopener noreferrer">
-          {drizzleState.accounts[0].address}
-        </a>
-      </div>
-    
-     <ContractData
-        drizzle={drizzle}
-        drizzleState={drizzleState}
-        contract="CryptoConchasRinkeby"
-        method="balanceOf"
-        methodArgs={[drizzleState.accounts[0]]}
-        render={(balanceOf) => {
-          const emptyArray = [];
-          const arrayLength = Number(balanceOf);
-          for(let i=0;i<arrayLength;i++){ emptyArray.push('') }
-          if(emptyArray.length === 0) {
-            return (
-              <Jumbotron className="no-artwork">
-                You have no artwork in your collection!
-              </Jumbotron>
-            )
-          }
-          return (
-              <div className="collection-container">
-                  {emptyArray.map(( _, index) => {
-                    return (
-                      <ContractData
-                        key={index}
-                        drizzle={drizzle}
-                        drizzleState={drizzleState}
-                        contract="CryptoConchasRinkeby"
-                        method="tokenOfOwnerByIndex"
-                        methodArgs={[drizzleState.accounts[0], arrayLength - 1 - index]}
-                        render={(tokenId) => (
-                            <ContractData
-                              key={index}
-                              drizzle={drizzle}
-                              drizzleState={drizzleState}
-                              contract="CryptoConchasRinkeby"
-                              method="tokenURI"
-                              methodArgs={[tokenId]}
-                              render={(uri) =>  (
-                                <div>
-                                  <DisplayImage address={drizzle.contractList[0].address} tokenId={tokenId} drizzle={drizzle} drizzleState={drizzleState} />
-                                </div>
-                              )}
-                            />
-                        )}
-                      />
-
-                    )}
-                  )}
-              </div>
-            );
-        }}
-      />
 
     </div>
     

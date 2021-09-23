@@ -6,7 +6,7 @@ import Nft from './nft'
 
 import { AppContext } from './layout'
 
-const Gallery = () => {
+const Gallery = ({ drizzle, drizzleState }) => {
   
   const [isOpen, setIsOpen] = useState(false);
 
@@ -27,7 +27,7 @@ const Gallery = () => {
     <li className={'gallery'}>
         <div onClick={toggleModal}>
             <h2>{color} concha #{index+1}</h2>
-            <Nft color={color} />
+            <Nft drizzle={drizzle} drizzleState={drizzleState} color={color} />
         </div>
     </li>
   ));

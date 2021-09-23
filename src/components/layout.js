@@ -6,6 +6,12 @@ import Footer from './footer.js'
 import '../index.css'
 import CryptoConchas from '../CryptoConchas'
 import { newContextComponents, AccountData } from "@drizzle/react-components";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 export const AppContext = React.createContext();
 const { ContractData } = newContextComponents;
@@ -28,18 +34,15 @@ function reducer(state, action) {
 
 const Layout = ({ drizzle, drizzleState }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    console.log(drizzle.contractList[0])
      return (
         <AppContext.Provider value={{ state, dispatch }}>
             <div className="">
-                <div className="">
-                    <Header contractName={drizzle.contractList[0].contractName}/>
-                    <div className="title">
-                    {state.tag}
-                    </div>
-                    {/* <Menu /> */}
-                    <CryptoConchas drizzle={drizzle} drizzleState={drizzleState} />
+                <Header contractName={drizzle.contractList[0].contractName}/>
+                <div className="title">
+                {state.tag}
                 </div>
+                {/* <Menu /> */}
+                <CryptoConchas drizzle={drizzle} drizzleState={drizzleState} />
                 <Footer />
             </div>
         </AppContext.Provider>
