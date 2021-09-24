@@ -9,6 +9,7 @@ import Inventory from "./components/inventory.js";
 import Nft from './components/nft.js'
 import Uploader from './components/uploader.js'
 import Gallery from './components/gallery.js'
+import Minted from './components/minted.js'
 
 const { ContractData } = newContextComponents;
 
@@ -223,21 +224,11 @@ const CryptoConchas = ({ drizzle, drizzleState }) => {
 
   return (
     <div className="App">
-
-      <div className="subtitle">
-        <p className="other-font">Smart Contract:</p>
-        <a
-          href={`https://Rinkeby.etherscan.io/address/${drizzle.contractList[0].address}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <p>&nbsp;{sliptAddressText(drizzle.contractList[0].address)}</p>
-        </a>
-      </div>
       
-      <Inventory drizzle={drizzle} drizzleState={drizzleState} />
+      {/* <Inventory drizzle={drizzle} drizzleState={drizzleState} /> */}
+      {/* <Minted drizzle={drizzle} drizzleState={drizzleState} /> */}
 
-      <Gallery drizzle={drizzle} drizzleState={drizzleState} />
+      {/* <Gallery drizzle={drizzle} drizzleState={drizzleState} /> */}
 
       {/* <Uploader drizzle={drizzle} drizzleState={drizzleState} /> */}
 

@@ -4,7 +4,13 @@ import Header from './header.js'
 // import Menu from './menu.js'
 import Footer from './footer.js'
 import '../index.css'
+import '../assets/index.sass'
 import CryptoConchas from '../CryptoConchas'
+import Inventory from "./inventory.js";
+import TokenMeta from "./tokenMeta.js";
+import Gallery from './gallery.js'
+import Minted from './minted.js'
+import Nft from './nft.js'
 import { newContextComponents, AccountData } from "@drizzle/react-components";
 import {
     BrowserRouter as Router,
@@ -42,7 +48,21 @@ const Layout = ({ drizzle, drizzleState }) => {
                 {state.tag}
                 </div>
                 {/* <Menu /> */}
-                <CryptoConchas drizzle={drizzle} drizzleState={drizzleState} />
+                <Router>
+                    <Route exact path="/">   
+                        <CryptoConchas drizzle={drizzle} drizzleState={drizzleState} />
+                        <Inventory drizzle={drizzle} drizzleState={drizzleState} />
+                        <Minted drizzle={drizzle} drizzleState={drizzleState} />
+                    </Route>
+                    <Route path="/token/:tokenId">   
+                        <TokenMeta/>
+                    </Route>
+                    <Route path="/gallery">   
+                        <Gallery drizzle={drizzle} drizzleState={drizzleState} />
+                    </Route>
+                    {/* <Route path="/minted">   
+                    </Route> */}
+                </Router>
                 <Footer />
             </div>
         </AppContext.Provider>

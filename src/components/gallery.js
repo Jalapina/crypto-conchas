@@ -24,19 +24,14 @@ const Gallery = ({ drizzle, drizzleState }) => {
 
 
   const ImageList = imageArray.map((color,index) => (
-    <li className={'gallery'}>
-        <div onClick={toggleModal}>
-            <div className="token-name-container">
-              <h2>{color} concha</h2><h3 className="token-id">#{index+1}</h3>
-            </div>
-            <Nft drizzle={drizzle} drizzleState={drizzleState} color={color} />
-        </div>
-    </li>
+    <Nft  onClick={toggleModal} drizzle={drizzle} drizzleState={drizzleState} color={color} />
   ));
 
   return (
     <div className="gallery-container">
-      {ImageList}
+      <div className="center-container">
+        {ImageList}
+      </div>
     </div>
   )
 

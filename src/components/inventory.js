@@ -4,6 +4,7 @@ import fleekStorage from '@fleekhq/fleek-storage-js';
 import { newContextComponents, AccountData } from "@drizzle/react-components";
 import * as menuStyles from "../assets/menu.module.scss";
 import TokenInventory from "./token.js"
+import "../assets/nft.sass"
 import "../assets/animations.css"
 
 const sliptAddressText = (address) =>{

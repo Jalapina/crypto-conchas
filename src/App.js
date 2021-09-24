@@ -17,9 +17,15 @@ const App = () => {
           if (!initialized || drizzleState.web3.status === 'failed') {
             return (
               <Jumbotron className="loading-jumbo">
-                <div className="loading-text">
-                  <div>Connect Metamask to start the app</div>
-                  <div>This app works on the Ropsten Testnet</div>
+                <div className="loading-network-page">
+                  <div className="loading-network-statement-container">
+                    <h2 className="loading-network-statement">Connect Metamask to start the app</h2>
+                    <h2 className="loading-network-statement">This app works on the Rinkeby Testnet</h2>
+                    <div class="lds-ripple"><div></div><div></div></div>
+                    <div className="opensea-link">
+                      <a href="https://testnets.opensea.io/collection/cryptoconchasrinkeby">View Our Project on OpenSea</a>
+                    </div>
+                  </div>
                 </div>
               </Jumbotron>
             )

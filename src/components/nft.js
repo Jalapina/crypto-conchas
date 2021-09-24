@@ -68,7 +68,8 @@ const Nft = ({color,drizzle,drizzleState}) => {
 
       const url = {
         name: color,
-        description: color,
+        color: color,
+        description: color+" Concha.",
         image_url: "https://storageapi.fleek.co/jalapina-team-bucket/nft/conchas/"+color+"-concha.png",
         hash: hash
       }
