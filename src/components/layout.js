@@ -10,6 +10,8 @@ import Inventory from "./inventory.js";
 import TokenMeta from "./tokenMeta.js";
 import Gallery from './gallery.js'
 import Minted from './minted.js'
+import About from './about.js'
+import MintableShowcase from './mintableShowcase.js'
 import Nft from './nft.js'
 import { newContextComponents, AccountData } from "@drizzle/react-components";
 import {
@@ -48,7 +50,6 @@ const Layout = ({ drizzle, drizzleState }) => {
                 {state.tag}
                 </div>
                 {/* <Menu /> */}
-                <Router>
                     <Route exact path="/">   
                         <CryptoConchas drizzle={drizzle} drizzleState={drizzleState} />
                         <Inventory drizzle={drizzle} drizzleState={drizzleState} />
@@ -60,9 +61,14 @@ const Layout = ({ drizzle, drizzleState }) => {
                     <Route path="/gallery">   
                         <Gallery drizzle={drizzle} drizzleState={drizzleState} />
                     </Route>
+                    <Route path="/mintable">
+                        <MintableShowcase drizzle={drizzle} drizzleState={drizzleState} />
+                    </Route>
+                    <Route path="/about">
+                        <About drizzle={drizzle} drizzleState={drizzleState} />
+                    </Route>
                     {/* <Route path="/minted">   
                     </Route> */}
-                </Router>
                 <Footer />
             </div>
         </AppContext.Provider>

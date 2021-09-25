@@ -236,3 +236,9 @@
 	-webkit-animation: heartbeat 1.5s ease-in-out both;
 	        animation: heartbeat 1.5s ease-in-out both;
 }
+
+
+.heartbeat-2 {
+	-webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+	        animation: heartbeat 1.5s ease-in-out infinite both;
+}

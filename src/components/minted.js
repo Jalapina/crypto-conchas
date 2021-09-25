@@ -63,7 +63,7 @@ const DisplayImage = (NftData) => {
     }, [NftData.tokenId]);
   
     return (
-        <div className="minted-individual-token">
+        <div className="minted-individual-token" style={{background:NftData.color}}>
             {nftMetadata?
                 <img className="artwork" src={nftMetadata.image_url} />
                 :""
@@ -74,10 +74,13 @@ const DisplayImage = (NftData) => {
 }
 
 const Minted = ({drizzle, drizzleState}) =>{
+    
+    const backgroundColor = ["#fb84ef","#ab2121","#663399","#4169e1","#ffff00","#2e8b57"];
+
     return(
 
         <div className="minted-container">
-
+        <h1>Minted and Baked</h1>
         <ContractData
             drizzle={drizzle}
             drizzleState={drizzleState}
@@ -91,7 +94,7 @@ const Minted = ({drizzle, drizzleState}) =>{
             if(emptyArray.length === 0) {
                 return (
                 <Jumbotron className="no-artwork">
-                    You have no artwork in your collection!
+                    No Conchas have been minted and baked yet.
                 </Jumbotron>
                 )
             }
@@ -116,7 +119,7 @@ const Minted = ({drizzle, drizzleState}) =>{
                                 methodArgs={[tokenId]}
                                 render={(uri) =>  (
                                     <>
-                                        <DisplayImage address={drizzle.contractList[0].address} tokenId={tokenId} drizzle={drizzle} drizzleState={drizzleState} />
+                                        <DisplayImage color={backgroundColor[index]} address={drizzle.contractList[0].address} tokenId={tokenId} drizzle={drizzle} drizzleState={drizzleState} />
                                     </>
                                 )}
                                 />

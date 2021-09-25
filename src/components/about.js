@@ -1,13 +1,14 @@
 import React from "react";
-import {dizzleReactHooks} from "@drizzle/react-plugin";
 
-const {useDizzleState} = dizzleReactHooks
+const sliptAddressText = (address) =>{
+  return address.split("").splice(-5);
+}
 
 const About = ({drizzle}) =>{
     
     return(
         <div className="subtitle">
-        <p className="other-font">Smart Contract:</p>
+        <h1 className="other-font">About Crypto Conchas.</h1>
         <a
           href={`https://Rinkeby.etherscan.io/address/${drizzle.contractList[0].address}`}
           target="_blank"
@@ -15,6 +16,7 @@ const About = ({drizzle}) =>{
         >
           <p>&nbsp;{sliptAddressText(drizzle.contractList[0].address)}</p>
         </a>
+        <p>I like conchas</p>
       </div>
     )
 }

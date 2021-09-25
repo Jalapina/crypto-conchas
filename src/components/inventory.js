@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from 'react'
+import {useImage} from 'react-image'
 import { Spinner, Button, Jumbotron } from 'react-bootstrap';
 import fleekStorage from '@fleekhq/fleek-storage-js';
 import { newContextComponents, AccountData } from "@drizzle/react-components";
 import * as menuStyles from "../assets/menu.module.scss";
-import TokenInventory from "./token.js"
-import "../assets/nft.sass"
-import "../assets/animations.css"
+import TokenInventory from "./token.js";
+import "../assets/nft.sass";
+import "../assets/animations.css";
+import { Link } from "react-router-dom";
+import src from '../images/bakery-shop.png'
 
 const sliptAddressText = (address) =>{
   return address.split("").splice(-5);
@@ -97,15 +100,16 @@ const DisplayImage = (NftData) => {
 const { ContractData } = newContextComponents;
 
 const Inventory = ({drizzle,drizzleState}) => {
-    
+  
+
   return (
         
     <div className="collection-title">
     
       <h1 className="other-font">Your Collection</h1>
 
-      <div className="colleciton-subtitle other-font">
-        <p>These fine pieces of art belong to you:</p>
+      <div className="colleciton-subtitle">
+        <p style={{display:'inline-block'}} className="other-font">These fine pieces of art belong to you: &nbsp;</p>
           <a href={`https://rinkeby.etherscan.io/address/${drizzleState.accounts[0]}`} target="_blank" rel="noopener noreferrer">
             {sliptAddressText(drizzleState.accounts[0])}
           </a>
@@ -123,9 +127,15 @@ const Inventory = ({drizzle,drizzleState}) => {
           for(let i=0;i<arrayLength;i++){ emptyArray.push('') }
           if(emptyArray.length === 0) {
             return (
-              <Jumbotron className="no-artwork">
-                You have no artwork in your collection!
-              </Jumbotron>
+              <div className="no-artwork">
+                <p className="other-font">You're low on bread!</p>
+                <div className="bakery-image-container">
+                  <Link to="/mintable">
+                    <img className="heartbeat-2" width="100px" src={src} />
+                  </Link>
+                </div>
+                
+              </div>
             )
           }
           return (
