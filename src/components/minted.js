@@ -3,6 +3,8 @@ import { newContextComponents, AccountData } from "@drizzle/react-components";
 import { Jumbotron } from 'react-bootstrap';
 import Nft from './nft.js';
 import "../assets/minted.sass"
+import "../assets/animations.css";
+
 const { ContractData } = newContextComponents;
 
 const DisplayImage = (NftData) => {
@@ -66,7 +68,7 @@ const DisplayImage = (NftData) => {
         <div className="minted-individual-token" style={{background:NftData.color}}>
             {nftMetadata?
                 <img className="artwork" src={nftMetadata.image_url} />
-                :""
+                :<div class="lds-hourglass"></div>
             }
         </div>
     );
@@ -75,64 +77,66 @@ const DisplayImage = (NftData) => {
 
 const Minted = ({drizzle, drizzleState}) =>{
     
-    const backgroundColor = ["#fb84ef","#ab2121","#663399","#4169e1","#ffff00","#2e8b57"];
+    const backgroundColor = ["#fb84ef","#ab2121","#663399","#4169e1","#ffffff","#ffff00","#2e8b57","#ff9c00","#ea0000"];
 
     return(
 
-        <div className="minted-container">
-        <h1>Minted and Baked</h1>
-        <ContractData
-            drizzle={drizzle}
-            drizzleState={drizzleState}
-            contract="CryptoConchasRinkeby"
-            method="totalSupply"
-            labels="length"
-            render={(balanceOf) => {
-            const emptyArray = [];
-            const arrayLength = Number(balanceOf);
-            for(let i=0;i<arrayLength;i++){ emptyArray.push('') }
-            if(emptyArray.length === 0) {
+        <div className="minted-container showcase">
+        
+            <h1>Minted and Baked</h1>
+
+            <ContractData
+                drizzle={drizzle}
+                drizzleState={drizzleState}
+                contract="CryptoConchasRinkeby"
+                method="totalSupply"
+                labels="length"
+                render={(balanceOf) => {
+                const emptyArray = [];
+                const arrayLength = Number(balanceOf);
+                for(let i=0;i<arrayLength;i++){ emptyArray.push('') }
+                if(emptyArray.length === 0) {
+                    return (
+                    <Jumbotron className="no-artwork">
+                        No Conchas have been minted and baked yet.
+                    </Jumbotron>
+                    )
+                }
                 return (
-                <Jumbotron className="no-artwork">
-                    No Conchas have been minted and baked yet.
-                </Jumbotron>
-                )
-            }
-            return (
-                <div className="collection-container">
-                    {emptyArray.map(( _, index) => {
-                        return (
-                        <ContractData
-                            key={index}
-                            drizzle={drizzle}
-                            drizzleState={drizzleState}
-                            contract="CryptoConchasRinkeby"
-                            method="tokenByIndex"
-                            methodArgs={[arrayLength - 1 - index]}
-                            render={(tokenId) => (
-                                <ContractData
+                    <div className="collection-container">
+                        {emptyArray.map(( _, index) => {
+                            return (
+                            <ContractData
                                 key={index}
                                 drizzle={drizzle}
                                 drizzleState={drizzleState}
                                 contract="CryptoConchasRinkeby"
-                                method="tokenURI"
-                                methodArgs={[tokenId]}
-                                render={(uri) =>  (
-                                    <>
-                                        <DisplayImage color={backgroundColor[index]} address={drizzle.contractList[0].address} tokenId={tokenId} drizzle={drizzle} drizzleState={drizzleState} />
-                                    </>
+                                method="tokenByIndex"
+                                methodArgs={[arrayLength - 1 - index]}
+                                render={(tokenId) => (
+                                    <ContractData
+                                    key={index}
+                                    drizzle={drizzle}
+                                    drizzleState={drizzleState}
+                                    contract="CryptoConchasRinkeby"
+                                    method="tokenURI"
+                                    methodArgs={[tokenId]}
+                                    render={(uri) =>  (
+                                        <>
+                                            <DisplayImage color={backgroundColor[index]} address={drizzle.contractList[0].address} tokenId={tokenId} drizzle={drizzle} drizzleState={drizzleState} />
+                                        </>
+                                    )}
+                                    />
                                 )}
-                                />
-                            )}
-                        />
+                            />
 
+                            )}
                         )}
-                    )}
-                </div>
-                );
-            }}
-        />
-    </div>
+                    </div>
+                    );
+                }}
+            />
+        </div>
     )
     
 }

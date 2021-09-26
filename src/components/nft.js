@@ -13,20 +13,13 @@ const { ContractData } = newContextComponents;
 
 const Nft = ({color,drizzle,drizzleState}) => {
 
-  const [artwork, setArtwork] = useState([]);
-  const [imageSource, setimageSource] = useState();
   const [txQueue, setTxQueue] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  const initialNftState = {name: "", category: ""}
-  const [nftData, setNftData] = useState(initialNftState);
 
   const[NftIsClicked, setNftIsClicked] = useState(false)
   const nftExpanded = React.useCallback(() => setNftIsClicked(!NftIsClicked));
   
-  const clearPreview = () => {
-    setArtwork([]);
-  };
 
   const createNFTTransaction = async (hash,publicUrl) => {
         
@@ -42,13 +35,11 @@ const Nft = ({color,drizzle,drizzleState}) => {
 
         await drizzle.contracts.CryptoConchasRinkeby.methods.mint(hash,publicUrl).send({from: drizzleState.accounts[0]});
 
-        setNftData(initialNftState);
       }catch(e) {
           console.error(e);
-          setNftData(initialNftState);      
           removeFromQueue(tokenURI);
         }
-      };
+  };
 
 
   const handleButtonClick = async (newTokenId) => {
@@ -82,15 +73,12 @@ const Nft = ({color,drizzle,drizzleState}) => {
       });
       
       setLoading(false);
-      clearPreview();
       createNFTTransaction(hash,publicUrl);
     } catch (e) {
       console.error(e);
       setLoading(false);
     }
   };
-
-  const isEnabled = nftData.name.length > 0 && nftData.category.length > 1;
 
   return (
     <div onClick={nftExpanded} className="nft-container">
@@ -128,9 +116,7 @@ const Nft = ({color,drizzle,drizzleState}) => {
         ): ""}
 
       </div>
-      <div className="landing-display">
-        <img className="artwork" width="95%" src={`https://storageapi.fleek.co/jalapina-team-bucket/nft/conchas/${color}-concha.png`} />
-      </div>
+      <img className="artwork" width="95%" src={`https://storageapi.fleek.co/jalapina-team-bucket/nft/conchas/${color}-concha.png`} />
     </div>
   )
 };

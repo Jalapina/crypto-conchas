@@ -8,7 +8,6 @@ import { AppContext } from "./components/layout.js";
 import Inventory from "./components/inventory.js";
 import Nft from './components/nft.js'
 import Uploader from './components/uploader.js'
-import Gallery from './components/gallery.js'
 import Minted from './components/minted.js'
 
 const { ContractData } = newContextComponents;
@@ -227,8 +226,6 @@ const CryptoConchas = ({ drizzle, drizzleState }) => {
       
       {/* <Inventory drizzle={drizzle} drizzleState={drizzleState} /> */}
       {/* <Minted drizzle={drizzle} drizzleState={drizzleState} /> */}
-
-      {/* <Gallery drizzle={drizzle} drizzleState={drizzleState} /> */}
 
       {/* <Uploader drizzle={drizzle} drizzleState={drizzleState} /> */}
 

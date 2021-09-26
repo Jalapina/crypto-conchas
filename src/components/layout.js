@@ -8,7 +8,6 @@ import '../assets/index.sass'
 import CryptoConchas from '../CryptoConchas'
 import Inventory from "./inventory.js";
 import TokenMeta from "./tokenMeta.js";
-import Gallery from './gallery.js'
 import Minted from './minted.js'
 import About from './about.js'
 import MintableShowcase from './mintableShowcase.js'
@@ -57,9 +56,6 @@ const Layout = ({ drizzle, drizzleState }) => {
                     </Route>
                     <Route path="/token/:tokenId">   
                         <TokenMeta/>
-                    </Route>
-                    <Route path="/gallery">   
-                        <Gallery drizzle={drizzle} drizzleState={drizzleState} />
                     </Route>
                     <Route path="/mintable">
                         <MintableShowcase drizzle={drizzle} drizzleState={drizzleState} />
