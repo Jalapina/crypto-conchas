@@ -6,6 +6,7 @@ import { newContextComponents, AccountData } from "@drizzle/react-components";
 import * as menuStyles from "../assets/menu.module.scss";
 import TokenInventory from "./token.js";
 import "../assets/nft.sass";
+import "../assets/inventory.sass";
 import "../assets/animations.css";
 import { Link } from "react-router-dom";
 import src from '../images/bakery-shop.png'
@@ -104,7 +105,7 @@ const Inventory = ({drizzle,drizzleState}) => {
 
   return (
         
-    <div className="collection-title">
+    <div className="inventory">
     
       <h1 className="other-font">Your Collection</h1>
 
