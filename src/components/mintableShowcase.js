@@ -1,38 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { newContextComponents, AccountData } from "@drizzle/react-components";
 import Tokens from './tokens';
-import "../assets/nft.sass";
 import Nft from './nft';
+import "../assets/nft.sass";
+import "../assets/animations.css";
+import "../assets/mintable.sass";
 
 const { ContractData } = newContextComponents;
 
-const SortShowcase = ({drizzle,drizzleState}) =>{
+const SortShowcase = ({imageColorArray,drizzle,drizzleState,tokenSupply}) =>{
 
   const [loading, setLoading] = useState(false);
   const [showcase, setShowcase] = useState([]);
   const [mintedColors, setMintedColors] = useState();
   const [nftMetadata, setNftMetadata] = useState();
-
-  const imageColorArray = ["blue","brown","dark-brown","green","light-brown","orange","pink","red","turquoise","white","yellow","purple","dark","mexican-colors","turquoise-purple-orange","turquoise-purple","chocolate-vanilla"];  
+  
+  let _imageColorArray = imageColorArray
+  let _tokenSupply = tokenSupply
+  
   let mintedColorsArray = []
-  let tokenSupply = null
   let URL = null
   let tokenId = null
 
+  const emptyArray = [];
+  const arrayLength = _tokenSupply;
+  for(let i=0;i<arrayLength;i++){ emptyArray.push('') }
+
   const checkForDuplicates = (arry1,arry2) =>{
+    
     let array1 = arry1;
     let array2 = arry2;
     
     return  array1.filter(function(n) { return array2.indexOf(n) == -1;});
-
   }
 
   const GetURL = async () => {    
     try {
   
-      tokenSupply = await drizzle.contracts.CryptoConchasRinkeby.methods.totalSupply().call();
-  
-      for(let x=0; x<tokenSupply;x++){
+      for(let x=0; x<_tokenSupply;x++){
 
         tokenId = await drizzle.contracts.CryptoConchasRinkeby.methods.tokenByIndex(x).call();
         URL = await drizzle.contracts.CryptoConchasRinkeby.methods.tokenURI(tokenId).call();
@@ -55,7 +60,8 @@ const SortShowcase = ({drizzle,drizzleState}) =>{
         });
         
       }
-      let sortedArray = await checkForDuplicates(imageColorArray,mintedColorsArray);
+
+      let sortedArray = await checkForDuplicates(_imageColorArray,mintedColorsArray);
 
       setShowcase(sortedArray);
 
@@ -71,15 +77,25 @@ const SortShowcase = ({drizzle,drizzleState}) =>{
   const sortedColorList = showcase.map((color,index) => 
       <Nft color={color} drizzle={drizzle} drizzleState={drizzleState}/>
   );
-    
 
   return(
     <div className="mintable">
-      { showcase ? (
+      { showcase.length > 0 ? (
         <div className="landing-display">
           {sortedColorList}
         </div>
-      ):"...Loading"}
+      ):(
+        <div>
+          {emptyArray.map((_,index) =>
+            <div className="gallery-loader">           
+              <div key={index} className="lds-hourglass">
+              </div>
+            </div>
+            )
+          }
+        </div>
+      )
+      }
     </div>
   )
 
@@ -87,10 +103,35 @@ const SortShowcase = ({drizzle,drizzleState}) =>{
 
 const MintableShowcase = ({ drizzle, drizzleState }) => {
   
+  const imageColorArray = ["blue","brown","dark-brown","green","light-brown","orange","pink","red","turquoise","white","yellow","purple","dark","mexican-colors","turquoise-purple-orange","turquoise-purple","chocolate-vanilla"];
+
+
   return (
     <div className="mintable-container showcase">
       <h2>Mintable</h2>
-      <SortShowcase drizzle={drizzle} drizzleState={drizzleState} />
+      <ContractData
+        drizzle={drizzle}
+        drizzleState={drizzleState}
+        contract="CryptoConchasRinkeby"
+        method="totalSupply"
+        render={(balanceOf) => {
+          const emptyArray = [];
+          const arrayLength = Number(balanceOf);
+          for(let i=0;i<arrayLength;i++){ emptyArray.push('') }
+          if(emptyArray.length === 0) {
+            return (
+              <div className="no-tokens">
+                {imageColorArray.map((color,index) => (
+                  <Nft drizzle={drizzle} drizzleState={drizzleState} color={color} />
+                ))
+                }
+              </div>
+            )
+          }return (
+            <SortShowcase tokenSupply={arrayLength} imageColorArray={imageColorArray} drizzle={drizzle} drizzleState={drizzleState} />
+          )
+        }}
+        />
     </div>
   )
 

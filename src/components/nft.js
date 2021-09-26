@@ -81,7 +81,7 @@ const Nft = ({color,drizzle,drizzleState}) => {
   };
 
   return (
-    <div onClick={nftExpanded} className="nft-container">
+    <div onClick={nftExpanded} className="none-minted-token-container">
 
       <div className={`nft ${menuStyles.menu} ${ NftIsClicked ? `${menuStyles.open}` : ""}`}>
         {NftIsClicked ?(
@@ -116,7 +116,7 @@ const Nft = ({color,drizzle,drizzleState}) => {
         ): ""}
 
       </div>
-      <img className="artwork" width="95%" src={`https://storageapi.fleek.co/jalapina-team-bucket/nft/conchas/${color}-concha.png`} />
+      <img className="artwork" width="95%" src={`https://storageapi.fleek.co/jalapina-team-bucket/nft/conchas/${color}-concha.png`} alt="Token Image"/>
     </div>
   )
 };

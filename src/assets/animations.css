@@ -242,3 +242,10 @@
 	-webkit-animation: heartbeat 1.5s ease-in-out infinite both;
 	        animation: heartbeat 1.5s ease-in-out infinite both;
 }
+.gallery-loader{
+  height: 350px;
+  width: 250px;
+  margin: 7px;
+  position: relative;
+  display: inline-block;
+}
