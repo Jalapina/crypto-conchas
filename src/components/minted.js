@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { newContextComponents, AccountData } from "@drizzle/react-components";
 import { Jumbotron } from 'react-bootstrap';
+
+import TokenInventory from "./token.js";
 import Nft from './nft.js';
+
 import "../assets/minted.sass"
 import "../assets/animations.css";
 
 const { ContractData } = newContextComponents;
 
-const DisplayImage = (NftData) => {
+const DisplayImage = ({backgroundColor,NftData,drizzle,drizzleState,tokenId}) => {
     
     const [nftMetadata, setNftMetadata] = useState();
     const [owner, setOwner] = useState();
@@ -16,23 +19,16 @@ const DisplayImage = (NftData) => {
       return address.split("").splice(-5);
     }
   
-    const isUrlValid = (url) =>{
-      return /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(url);
-    } 
-  
-  
     const GetURI = async (data) => {
       
-      const _owner = await data.drizzle.contracts.CryptoConchasRinkeby.methods.ownerOf(data.tokenId).call()
+      const _owner = await drizzle.contracts.CryptoConchasRinkeby.methods.ownerOf(tokenId).call()
       
       setOwner(_owner);
   
       if(data === "undefined") return [];
       
-      const nftURI = await data.drizzle.contracts.CryptoConchasRinkeby.methods.tokenURI(data.tokenId).call()
+      const nftURI = await drizzle.contracts.CryptoConchasRinkeby.methods.tokenURI(tokenId).call()
       
-      if(!isUrlValid(nftURI)) return console.log("No URI: ", nftURI);
-    
       await fetch(nftURI , {
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +49,7 @@ const DisplayImage = (NftData) => {
     };
   
     const callUri = async() =>{
-      const data = await GetURI(NftData)
+      const data = await GetURI()
       setNftMetadata(data)
     }
   
@@ -61,13 +57,13 @@ const DisplayImage = (NftData) => {
     }, [nftMetadata]);
   
     useEffect(() => {
-      GetURI(NftData)
-    }, [NftData.tokenId]);
+      GetURI()
+    }, [tokenId]);
   
     return (
-        <div className="minted-individual-token" style={{background:NftData.color}}>
+        <div className="minted-individual-token" style={{background:backgroundColor}}>
             {nftMetadata?
-                <img className="artwork" src={nftMetadata.image_url} />
+                <TokenInventory address={drizzle.contractList[0].address} owner={owner} metadata={nftMetadata} tokenId={tokenId} />
                 :<div class="lds-hourglass"></div>
             }
         </div>
@@ -123,7 +119,7 @@ const Minted = ({drizzle, drizzleState}) =>{
                                     methodArgs={[tokenId]}
                                     render={(uri) =>  (
                                         <>
-                                            <DisplayImage color={backgroundColor[index]} address={drizzle.contractList[0].address} tokenId={tokenId} drizzle={drizzle} drizzleState={drizzleState} />
+                                            <DisplayImage backgroundColor={backgroundColor[index]} address={drizzle.contractList[0].address} tokenId={tokenId} drizzle={drizzle} drizzleState={drizzleState} />
                                         </>
                                     )}
                                     />

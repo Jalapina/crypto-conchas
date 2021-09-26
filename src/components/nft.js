@@ -4,6 +4,9 @@ import fleekStorage from '@fleekhq/fleek-storage-js';
 import { newContextComponents, AccountData } from "@drizzle/react-components";
 import * as menuStyles from "../assets/menu.module.scss";
 import "../assets/nft.sass"
+import "../assets/animations.css";
+
+import closeIcon from "../images/close.png"
 
 const sliptAddressText = (address) =>{
   return address.split("").splice(-5);
@@ -15,12 +18,10 @@ const Nft = ({color,drizzle,drizzleState}) => {
 
   const [txQueue, setTxQueue] = useState([]);
   const [loading, setLoading] = useState(true);
-  
 
   const[NftIsClicked, setNftIsClicked] = useState(false)
   const nftExpanded = React.useCallback(() => setNftIsClicked(!NftIsClicked));
   
-
   const createNFTTransaction = async (hash,publicUrl) => {
         
       const tokenURI = publicUrl;
@@ -40,7 +41,6 @@ const Nft = ({color,drizzle,drizzleState}) => {
           removeFromQueue(tokenURI);
         }
   };
-
 
   const handleButtonClick = async (newTokenId) => {
 
@@ -81,9 +81,12 @@ const Nft = ({color,drizzle,drizzleState}) => {
   };
 
   return (
-    <div onClick={nftExpanded} className="none-minted-token-container">
+    <div className="none-minted-token-container">
 
       <div className={`nft ${menuStyles.menu} ${ NftIsClicked ? `${menuStyles.open}` : ""}`}>
+        <div className="close-icon-wrapper">
+          <img onClick={nftExpanded} className="close-icon" width="40px" src={closeIcon}/>
+        </div>
         {NftIsClicked ?(
           <div className="modal-container">
 
@@ -92,7 +95,7 @@ const Nft = ({color,drizzle,drizzleState}) => {
             </div>
             
             <div className="token-options">
-              <h2>{color}</h2>
+              <h2>{color} Concha.</h2>
 
               <ContractData
                 drizzle={drizzle}
@@ -100,13 +103,17 @@ const Nft = ({color,drizzle,drizzleState}) => {
                 contract="CryptoConchasRinkeby"
                 method="totalSupply"
                 render={(supply) => (
-                  <div>
-                    <Button
-                      onClick={() => handleButtonClick(supply)}
-                      className="button"
-                    >
-                     <span>MINT</span>
-                  </Button>
+                  <div className="button-container">
+                    {loading?(
+                      <Button
+                        onClick={() => handleButtonClick(supply)}
+                        className="button"
+                      >
+                      <span>MINT</span>
+                    </Button>
+                    ):<div class="lds-hourglass"></div>
+                    }
+
                 </div>
                 )}
               />
@@ -116,7 +123,7 @@ const Nft = ({color,drizzle,drizzleState}) => {
         ): ""}
 
       </div>
-      <img className="artwork" width="95%" src={`https://storageapi.fleek.co/jalapina-team-bucket/nft/conchas/${color}-concha.png`} alt="Token Image"/>
+      <img onClick={nftExpanded} className="artwork" width="95%" src={`https://storageapi.fleek.co/jalapina-team-bucket/nft/conchas/${color}-concha.png`} alt="Token Image"/>
     </div>
   )
 };

@@ -109,6 +109,7 @@ const MintableShowcase = ({ drizzle, drizzleState }) => {
   return (
     <div className="mintable-container showcase">
       <h2>Mintable</h2>
+      <p className="other-font">Ready for the overn</p>
       <ContractData
         drizzle={drizzle}
         drizzleState={drizzleState}
