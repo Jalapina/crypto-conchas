@@ -62,7 +62,6 @@ const SortShowcase = ({imageColorArray,drizzle,drizzleState,tokenSupply}) =>{
       }
 
       let sortedArray = await checkForDuplicates(_imageColorArray,mintedColorsArray);
-
       setShowcase(sortedArray);
 
     }catch(e){
@@ -105,11 +104,10 @@ const MintableShowcase = ({ drizzle, drizzleState }) => {
   
   const imageColorArray = ["blue","brown","dark-brown","green","light-brown","orange","pink","red","turquoise","white","yellow","purple","dark","mexican-colors","turquoise-purple-orange","turquoise-purple","chocolate-vanilla"];
 
-
   return (
     <div className="mintable-container showcase">
       <h2>Mintable</h2>
-      <p className="other-font">Ready for the overn</p>
+      <p className="other-font">Ready for the oven</p>
       <ContractData
         drizzle={drizzle}
         drizzleState={drizzleState}

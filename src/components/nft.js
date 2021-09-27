@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Spinner, Button, Jumbotron } from 'react-bootstrap';
 import fleekStorage from '@fleekhq/fleek-storage-js';
 import { newContextComponents, AccountData } from "@drizzle/react-components";
+import { useHistory } from "react-router-dom";
 import * as menuStyles from "../assets/menu.module.scss";
 import "../assets/nft.sass"
 import "../assets/animations.css";
@@ -22,6 +23,8 @@ const Nft = ({color,drizzle,drizzleState}) => {
   const[NftIsClicked, setNftIsClicked] = useState(false)
   const nftExpanded = React.useCallback(() => setNftIsClicked(!NftIsClicked));
   
+  let history = useHistory();
+
   const createNFTTransaction = async (hash,publicUrl) => {
         
       const tokenURI = publicUrl;
@@ -39,13 +42,13 @@ const Nft = ({color,drizzle,drizzleState}) => {
       }catch(e) {
           console.error(e);
           removeFromQueue(tokenURI);
+          setLoading(false);
+          return history.push("/mintable");
         }
   };
 
   const handleButtonClick = async (newTokenId) => {
 
-    setLoading(true)
-    
     try {
       const date = new Date();
       const timestamp = date.getTime();
@@ -73,10 +76,12 @@ const Nft = ({color,drizzle,drizzleState}) => {
       });
       
       setLoading(false);
-      createNFTTransaction(hash,publicUrl);
+      await createNFTTransaction(hash,publicUrl);
+      return history.push("/");
     } catch (e) {
       console.error(e);
       setLoading(false);
+      return history.push("/mintable");
     }
   };
 
@@ -103,15 +108,21 @@ const Nft = ({color,drizzle,drizzleState}) => {
                 contract="CryptoConchasRinkeby"
                 method="totalSupply"
                 render={(supply) => (
-                  <div className="button-container">
+                  <div className="mint-button-container">
                     {loading?(
                       <Button
-                        onClick={() => handleButtonClick(supply)}
+                        onClick={() =>{  setLoading(true); handleButtonClick(supply);}}
                         className="button"
                       >
                       <span>MINT</span>
                     </Button>
-                    ):<div class="lds-hourglass"></div>
+                    ):
+                    <div class="loading-minting-container">
+                      <div class="lds-hourglass">                    
+                      </div>
+                      <p>Minting your Conchas</p>                      
+                      <p>One sec</p>                      
+                    </div>
                     }
 
                 </div>

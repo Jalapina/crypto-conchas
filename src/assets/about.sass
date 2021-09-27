@@ -1,3 +1,5 @@
+$screen-width: 750px;
+
 .what-is-crypto-conchas
     text-align: center
     padding: 25px
@@ -24,11 +26,19 @@
 .conchas-images-container
     min-height: 200px
     position: relative
+    margin: 60px auto
+    max-width: 720px
     .concha-about-image
         width: 40%
-        max-width: 300px
+        max-width: 250px
         position: absolute
+        z-index: -10
     .pink
-        left: 125px
+        left: 230px
     .mexican
-        left: 55px
+        left: 120px
+    @media screen and (max-width: $screen-width)
+        .pink 
+            left: 112px
+        .mexican
+            left: 30px

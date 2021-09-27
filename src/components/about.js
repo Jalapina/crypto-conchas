@@ -44,7 +44,7 @@ const About = ({drizzle}) =>{
             </a>
           </div>
 
-          <p className="conchas-statement">This project is a ERC-721 smart contract running in the Ethereum Rinkeby testnet, I hope on launching in the mainnet very soon.</p>
+          <p className="conchas-statement">This project is an ERC-721 smart contract running in the Ethereum Rinkeby testnet, I hope on launching in the mainnet very soon.</p>
 
       </div>
     )

@@ -73,13 +73,13 @@ const DisplayImage = ({backgroundColor,NftData,drizzle,drizzleState,tokenId}) =>
 
 const Minted = ({drizzle, drizzleState}) =>{
     
-    const backgroundColor = ["#fb84ef","#ab2121","#663399","#4169e1","#ffffff","#ffff00","#2e8b57","#ff9c00","#ea0000"];
+    const backgroundColor = ["#fb84ef","#ab2121","#663399","#4169e1","#ffffff","#ffff00","#2e8b57","#ff9c00","#ea0000","#13e9b5","#573a13","#19de2e","#000000","#ff0000"];
 
     return(
 
         <div className="minted-container showcase">
-        
-            <h1>Minted and Baked</h1>
+
+            <h1>Conchas Minted and Baked</h1>
 
             <ContractData
                 drizzle={drizzle}
