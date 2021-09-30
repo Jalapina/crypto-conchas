@@ -69,8 +69,8 @@ const Nft = ({color,drizzle,drizzleState}) => {
       }
 
       const { publicUrl } = await fleekStorage.upload({
-        apiKey: "ezmuRXUXulan6Kj0PXU4LA==",
-        apiSecret: "W7gKpPrEtZGS9WGhZyYa130VXtJZ9CROCguNoxHLq2A=",
+        apiKey: "5p1Nxgb8eIEOEYjwduM4Fg==",
+        apiSecret: "HC4pKXrmEITQwS0bC9fXwrbiPnwEhfUcXoao7JoHCu8=",
         key: `nft/${newTokenId}-${timestamp}`,
         data: JSON.stringify(url),
       });
@@ -111,7 +111,7 @@ const Nft = ({color,drizzle,drizzleState}) => {
                   <div className="mint-button-container">
                     {loading?(
                       <Button
-                        onClick={() =>{  setLoading(true); handleButtonClick(supply);}}
+                        onClick={() =>{setLoading(true); handleButtonClick(supply);}}
                         className="button"
                       >
                       <span>MINT</span>
