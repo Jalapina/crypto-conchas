@@ -102,7 +102,7 @@ const SortShowcase = ({imageColorArray,drizzle,drizzleState,tokenSupply}) =>{
 
 const MintableShowcase = ({ drizzle, drizzleState }) => {
   
-  const imageColorArray = ["blue","brown","dark-brown","green","light-brown","orange","pink","red","turquoise","white","yellow","purple","dark","mexican-colors","turquoise-purple-orange","turquoise-purple","chocolate-vanilla"];
+  const imageColorArray = ["blue","brown","dark-brown","green","light-brown","orange","pink","red","turquoise","white","yellow","purple","dark","mexican-colors","turquoise-purple-orange","turquoise-purple","chocolate-vanilla","calacas","dark-purple-pink","light-pink-dark-pink"];
 
   return (
     <div className="mintable-container showcase">
