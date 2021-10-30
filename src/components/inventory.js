@@ -110,7 +110,7 @@ const Inventory = ({drizzle,drizzleState}) => {
 
       <div className="colleciton-subtitle">
         
-        <h1 className="other-font">Your Collection</h1>
+        <h1 className="other-font">Your Conchas</h1>
         <p style={{margin:'25px'}} className="other-font">These fine pieces of art belong to you</p>
         <a href={`https://rinkeby.etherscan.io/address/${drizzleState.accounts[0]}`} target="_blank" rel="noopener noreferrer">
           {sliptAddressText(drizzleState.accounts[0])}

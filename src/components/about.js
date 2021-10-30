@@ -10,7 +10,7 @@ const sliptAddressText = (address) =>{
   return address.split("").splice(-6);
 }
 
-const About = ({drizzle}) =>{
+const About = () =>{
     
     return(
         <div className="what-is-crypto-conchas">
@@ -36,11 +36,10 @@ const About = ({drizzle}) =>{
             </div>
             <p style={  {fontFamily: 'Bounties', fontSize: "25px"}}>View ERC-721 Contract</p>
             <a
-              href={`https://Rinkeby.etherscan.io/address/${drizzle.contractList[0].address}`}
+              href="https://Rinkeby.etherscan.io/address/0x3473146b6fFEB474f3B6Ea90D0bA6AD30E909f9E"
               target="_blank"
               rel="noopener noreferrer"
               >
-              {sliptAddressText(drizzle.contractList[0].address)}
             </a>
           </div>
 
