@@ -16,29 +16,19 @@ const Introduction = ({drizzle}) =>{
     
     return(
         <div className="introduction-container">
-{/* 
-          <div className="conchas-image-container rainbow-concha-image-container">
-            <img className="concha-image image-rotation-" src={rainbowConchas}/>
-          </div>
-          
-          <div className="pink-concha-image-container conchas-image-container">
-            <img className="concha-image image-rotation-" src={pinkConchas}/>
-          </div>
-          
-          <div className="white-concha-image-container conchas-image-container">
-            <img className="concha-image image-rotation-" src={whiteConchas}/>
-          </div>
-          <div className="azteca-concha-image-container conchas-image-container">
-            <img className="concha-image image-rotation-" src={aztecaConcha}/>
-          </div> */}
 
           <div className="conchas-introduction-statement">
-            <p className="indent">Crypto Conchas is a digital collection of the most delicious Mexican sweet bread
-            known to everyone, and a Mexican tradition.
-            </p>
-            <p>
-              Our mission is to introduce the new concepts of the internet to the latino community, the blockchain will take these delicious Conchas into the future.
-            </p>
+            <div>
+              <p className="first-statement">
+                Crypto Conchas is a digital collection of the most delicious Mexican sweet bread
+                known to everyone.
+              </p>
+            </div>
+            <div className="white-background">
+              <p>
+                Our mission is to introduce the new concepts of the internet to the latino community, the blockchain will take these delicious Conchas into the future.
+              </p>
+            </div>
           </div>
 
       </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import * as Utils from 'web3-utils';
 import { newContextComponents, AccountData } from "@drizzle/react-components";
 import Tokens from './tokens';
 import Nft from './nft';
@@ -102,35 +103,41 @@ const SortShowcase = ({imageColorArray,drizzle,drizzleState,tokenSupply}) =>{
 
 const MintableShowcase = ({ drizzle, drizzleState }) => {
   
-  const imageColorArray = ["blue","brown","dark-brown","green","light-brown","orange","pink","red","turquoise","white","yellow","purple","dark","mexican-colors","turquoise-purple-orange","turquoise-purple","chocolate-vanilla","calacas","dark-purple-pink","light-pink-dark-pink"];
+  const createNFTTransaction = async () => {
+    // setLoading(true)
+    try {
+        
+        // const transaction = await drizzleState.mint(drizzle.Address, {
+        //     value: '45000000000000000',
+        // });
+
+
+        // const transaction =  await drizzle.contracts.CryptoConchasRinkeby.methods.mint(drizzleState.accounts[0]).send({from: drizzleState.accounts[0],value: Utils.toWei('0.25')});
+         const transaction =  await drizzle.contracts.CryptoConchasRinkeby.methods.mint(drizzleState.accounts[0]).send();
+        
+
+        await transaction.wait().then(result =>{
+            // setReload(true)
+            console.log(result);
+        })
+
+        // setLoading(false);
+    } catch (e) {
+        // setLoading(false);
+        console.error(e);
+    }
+
+  };
 
   return (
     <div className="mintable-container showcase">
       <h2>Mintable</h2>
       <p className="other-font">Ready for the oven</p>
-      <ContractData
-        drizzle={drizzle}
-        drizzleState={drizzleState}
-        contract="CryptoConchasRinkeby"
-        method="totalSupply"
-        render={(balanceOf) => {
-          const emptyArray = [];
-          const arrayLength = Number(balanceOf);
-          for(let i=0;i<arrayLength;i++){ emptyArray.push('') }
-          if(emptyArray.length === 0) {
-            return (
-              <div className="no-tokens">
-                {imageColorArray.map((color,index) => (
-                  <Nft drizzle={drizzle} drizzleState={drizzleState} color={color} />
-                ))
-                }
-              </div>
-            )
-          }return (
-            <SortShowcase tokenSupply={arrayLength} imageColorArray={imageColorArray} drizzle={drizzle} drizzleState={drizzleState} />
-          )
-        }}
-        />
+      <div class="mint-button-wrapper">
+        <button onClick={() => createNFTTransaction()} >
+          MINT
+        </button>
+      </div>
     </div>
   )
 

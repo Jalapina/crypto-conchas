@@ -21,25 +21,8 @@ import {
     Route,
     Link
   } from "react-router-dom";
-
 export const AppContext = React.createContext();
 const { ContractData } = newContextComponents;
-
-const initialState = {
-    categoryNumber: 0,
-  };
-  
-function reducer(state, action) {
-    switch (action.type) {
-        case 'UPDATE_INDEX':
-            return update(state, {
-                categoryNumber: {$set: action.data},
-            });
-  
-        default:
-            return initialState;
-    }
-}
 
 const Layout = ({ drizzleContext }) => {
     // const [state, dispatch] = useReducer(reducer, initialState);
@@ -49,7 +32,7 @@ const Layout = ({ drizzleContext }) => {
 
      return (
         <AppContext.Provider >
-            <div className="">
+            <div className="layout-wrapper">
                 {(() => {
                     if(drizzleState == null || initialized === "false" || drizzleState.web3.status === "failed" ) {
                     return (

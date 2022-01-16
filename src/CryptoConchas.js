@@ -147,7 +147,7 @@ const CryptoConchas = ({ drizzle, drizzleState }) => {
     try {
       setTxQueue([...txQueue, tokenURI]);
 
-      await drizzle.contracts.CryptoConchasRinkeby.methods.mint(hash,publicUrl).send({from: drizzleState.accounts[0]});
+      await drizzle.contracts.CryptoConchas.methods.mint(hash,publicUrl).send({from: drizzleState.accounts[0]});
 
       setNftData(initialNftState);
     } catch (e) {

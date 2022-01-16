@@ -15,33 +15,28 @@ const sliptAddressText = (address) =>{
   return address.split("").splice(-5);
 }
 
-const DisplayImage = (NftData) => {
+const DisplayImage = ({backgroundColor,NftData,drizzle,drizzleState,tokenId}) => {
   
   const [nftMetadata, setNftMetadata] = useState();
   const [owner, setOwner] = useState();
-  const [loading, setLoading] = useState(true);
-  
+
   const sliptAddressText = (address) =>{
     return address.split("").splice(-5);
   }
 
-  const isUrlValid = (url) =>{
-    return /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(url);
-  }
-  
   const GetURI = async (data) => {
     
-
-    const _owner = await data.drizzle.contracts.CryptoConchasRinkeby.methods.ownerOf(data.tokenId).call()
+    const _owner = await drizzle.contracts.CryptoConchasRinkeby.methods.ownerOf(tokenId).call()
+  //   const _owner = undefined
     
     setOwner(_owner);
 
     if(data === "undefined") return [];
     
-    const nftURI = await data.drizzle.contracts.CryptoConchasRinkeby.methods.tokenURI(data.tokenId).call()
+    const nftURI = await drizzle.contracts.CryptoConchasRinkeby.methods.tokenURI(tokenId).call()
+    console.log(nftURI)
+  //   const nftURI = undefined
     
-    if(!isUrlValid(nftURI)) return console.log("No URI: ", nftURI);
-  
     await fetch(nftURI , {
       headers: {
         'Content-Type': 'application/json',
@@ -53,8 +48,7 @@ const DisplayImage = (NftData) => {
         return data.json();
       })
       .then(data => {
-        setNftMetadata(data || []);
-        return setLoading(false) 
+        return setNftMetadata(data || []);
       })
       .catch(err => {
         return console.log(err);
@@ -63,7 +57,7 @@ const DisplayImage = (NftData) => {
   };
 
   const callUri = async() =>{
-    const data = await GetURI(NftData)
+    const data = await GetURI()
     setNftMetadata(data)
   }
 
@@ -71,32 +65,20 @@ const DisplayImage = (NftData) => {
   }, [nftMetadata]);
 
   useEffect(() => {
-    GetURI(NftData)
-  }, [NftData.tokenId]);
-  
+    GetURI()
+  }, [tokenId]);
+
   return (
-    <div className="token-container">
-
-      <ContractData
-        drizzle={NftData.drizzle}
-        drizzleState={NftData.drizzleState}
-        contract="CryptoConchasRinkeby"
-        method="CID"
-        methodArgs={[NftData.tokenId]}
-        render={(cid) =>(
-          <div className="loading-container">
-            {!loading?
-              <TokenInventory cid={cid} address={NftData.address} owner={owner} metadata={nftMetadata} tokenId={NftData.tokenId} />
-            :<div class="lds-hourglass"></div>
-            }
-          </div>
-        )}
-      />
-
-    </div>
+      <div className="minted-individual-token" style={{background:backgroundColor}}>
+          {nftMetadata?
+              <TokenInventory address={drizzle.contractList[0].address} owner={owner} metadata={nftMetadata} tokenId={tokenId} />
+              :<div class="lds-hourglass"></div>
+          }
+      </div>
   );
-  
+
 }
+
 
 const { ContractData } = newContextComponents;
 

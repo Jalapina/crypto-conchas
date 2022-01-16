@@ -22,12 +22,15 @@ const DisplayImage = ({backgroundColor,NftData,drizzle,drizzleState,tokenId}) =>
     const GetURI = async (data) => {
       
       const _owner = await drizzle.contracts.CryptoConchasRinkeby.methods.ownerOf(tokenId).call()
+    //   const _owner = undefined
       
       setOwner(_owner);
   
       if(data === "undefined") return [];
       
       const nftURI = await drizzle.contracts.CryptoConchasRinkeby.methods.tokenURI(tokenId).call()
+      console.log(nftURI)
+    //   const nftURI = undefined
       
       await fetch(nftURI , {
         headers: {
@@ -110,19 +113,7 @@ const Minted = ({drizzle, drizzleState}) =>{
                                 method="tokenByIndex"
                                 methodArgs={[arrayLength - 1 - index]}
                                 render={(tokenId) => (
-                                    <ContractData
-                                    key={index}
-                                    drizzle={drizzle}
-                                    drizzleState={drizzleState}
-                                    contract="CryptoConchasRinkeby"
-                                    method="tokenURI"
-                                    methodArgs={[tokenId]}
-                                    render={(uri) =>  (
-                                        <>
-                                            <DisplayImage backgroundColor={backgroundColor[index]} address={drizzle.contractList[0].address} tokenId={tokenId} drizzle={drizzle} drizzleState={drizzleState} />
-                                        </>
-                                    )}
-                                    />
+                                    <DisplayImage backgroundColor={backgroundColor[index]} tokenId={tokenId} drizzle={drizzle} drizzleState={drizzleState} />
                                 )}
                             />
 

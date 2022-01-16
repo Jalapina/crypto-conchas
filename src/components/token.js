@@ -10,8 +10,8 @@ const sliptAddressText = (address) =>{
 }
 
 const TokenInventory = ({address, owner, metadata, tokenId}) => {
-  
-  const [imageSource, setimageSource] = useState(metadata.image_url );
+  console.log(metadata)
+  const [imageSource, setimageSource] = useState(metadata.image );
 
   const[NftIsClicked, setNftIsClicked] = useState(false)
   const nftExpanded = React.useCallback(() => setNftIsClicked(!NftIsClicked));
