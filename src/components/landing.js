@@ -11,14 +11,16 @@ import rarible from "../images/rarible-logo.svg"
 import video from "../images/conchas-animation.webm"
 import concha from "../images/crypto-conchas-logo.png"
 import Cornsilk from "../images/Cornsilk-concha.png"
-import alacran from "../images/el-alacran.png"
-import gold from "../images/Gold.png"
+import royal from "../images/royal-blue-v2.png"
+import allColors from "../images/all-color-conchas.png"
+import PinkInstagram from "../images/pink-instagram.png"
+import discord from "../images/discord.png"
+import twitter from "../images/twitter.png"
 
 const Landing = () => { 
 
   return (
     <div className="landing">
-        <Introduction/>
         <div className="no-web3">
         <div class="blob">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 350">
@@ -64,7 +66,7 @@ const Landing = () => {
             </div>
             <div class="timeline__event__content ">
               <div class="timeline__event__title">
-                Birthday
+                Launch
               </div>
               <div class="timeline__event__description">
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
@@ -74,14 +76,14 @@ const Landing = () => {
           <div class="timeline__event animated fadeInUp delay-2s timeline__event--type2">
             <div class="timeline__event__icon">
               <i class="lni-burger"></i>
-              <img src={gold}/>
+              <img src={Cornsilk}/>              
             </div>
             <div class="timeline__event__date">
               20-08-2019
             </div>
             <div class="timeline__event__content">
               <div class="timeline__event__title">
-                Lunch
+                Winner
               </div>
               <div class="timeline__event__description">
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
@@ -90,15 +92,16 @@ const Landing = () => {
           </div>
           <div class="timeline__event animated fadeInUp delay-1s timeline__event--type3">
             <div class="timeline__event__icon">
+              <img src={concha}/>
+            
               <i class="lni-slim"></i>
-              <img src={Cornsilk}/>
             </div>
             <div class="timeline__event__date">
               20-08-2019
             </div>
             <div class="timeline__event__content">
               <div class="timeline__event__title">
-                Exercise
+                Giveaway
               </div>
               <div class="timeline__event__description">
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
@@ -109,14 +112,14 @@ const Landing = () => {
           <div class="timeline__event animated fadeInUp timeline__event--type1">
             <div class="timeline__event__icon">
               <i class="lni-cake"></i>
-              <img src={alacran}/>
+              <img src={royal}/>
             </div>
             <div class="timeline__event__date">
               20-08-2019
             </div>
             <div class="timeline__event__content">
               <div class="timeline__event__title">
-                Birthday
+                Evolution
               </div>
               <div class="timeline__event__description">
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
@@ -137,9 +140,23 @@ const Landing = () => {
             <img src={concha}/>
           </div>
         </div>
-        {/* <div className="video-player-container">
-            <ReactPlayer className='react-player' playing={true} loop={true} width={"650px"} url={video} />
-          </div> */}
+        <div className="social-media">
+          <div className="social-media-image-container">
+            <a href="https://www.instagram.com/cryptoconchas/" className="social-media-link">
+              <img src={PinkInstagram}/>
+            </a>
+          </div>
+          <div className="social-media-image-container">
+            <a href="https://discord.gg/KsHwRYKTQV" className="social-media-link">
+              <img src={discord}/>          
+            </a>
+          </div>
+          <div className="social-media-image-container">
+            <a href="https://twitter.com/ConchasCrypto" className="social-media-link">
+              <img src={twitter}/>          
+            </a>
+          </div>
+        </div>
     </div>
     
   );

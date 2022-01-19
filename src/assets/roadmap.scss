@@ -169,7 +169,9 @@ html {
         }
   
         .timeline__event__icon {
-          background: #24b47e;
+          // background: #24b47e;
+          background: url("../images/all-color-conchas.png");
+          background-size: contain;
           color: #24b47e;
         }
         .timeline__event__title {
@@ -187,7 +189,7 @@ html {
       
     }
   }
-  
+
   .timeline__event{
     &:nth-child(even){
         animation: floatLeft 6s ease-in-out infinite;

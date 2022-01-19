@@ -39,6 +39,7 @@ const Layout = ({ drizzleContext }) => {
                         <div>
                             <Header initialized={false}/>
                             <Route exact path="/">
+                                <Introduction/>
                                 <Landing />
                             </Route>
                         </div>
