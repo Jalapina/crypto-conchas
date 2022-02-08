@@ -1,6 +1,6 @@
 {
-    "name":"Green white Concha",
-    "description":"Sweet",
-    "image":"https://storageapi.fleek.co/jalapina-team-bucket/nfts/conchas/Concha-green-white.png",
-    "background_color": "#000"
+	"name":"Beige Concha",
+	"frosting":"beige",
+	"image":"https://storageapi.fleek.co/f1928932-f0bf-42e6-9993-dfe1c03a7c7a-bucket/images/beige-concha.png",
+	"bread": "brown"
 }

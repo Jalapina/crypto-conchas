@@ -1,6 +1,6 @@
 {
-    "name":"Blue Concha",
-    "description":"Sweet",
-    "image":"https://storageapi.fleek.co/jalapina-team-bucket/nfts/conchas/blue-concha.png",
-    "background_color": "#000"
+	"name":"Azteca Concha",
+	"frosting":"Azteca",
+	"image":"https://storageapi.fleek.co/f1928932-f0bf-42e6-9993-dfe1c03a7c7a-bucket/images/azteca-concha.png",
+	"bread": "Gold brown"
 }

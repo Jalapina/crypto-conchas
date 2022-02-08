@@ -311,7 +311,7 @@
   top: 0;
   left: 0;
   fill: rgb(255 204 128);
-  width: 50vmax;
+  width: 80vmax;
   z-index: 0;
   animation: move 20s 4s ease-in-out infinite;
   transform-origin: 50% 50%;

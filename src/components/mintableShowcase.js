@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import * as Utils from 'web3-utils';
-import { newContextComponents, AccountData } from "@drizzle/react-components";
 import Tokens from './tokens';
 import Nft from './nft';
 import "../assets/nft.sass";
 import "../assets/animations.css";
 import "../assets/mintable.sass";
+import { AppContext } from "../App.js";
 
-const { ContractData } = newContextComponents;
-
-const SortShowcase = ({imageColorArray,drizzle,drizzleState,tokenSupply}) =>{
-
+const SortShowcase = ({imageColorArray,tokenSupply}) =>{
+  
+  const {accountAddress, contractState, reload, setReload, totalSupply} = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [showcase, setShowcase] = useState([]);
   const [mintedColors, setMintedColors] = useState();
@@ -40,8 +39,8 @@ const SortShowcase = ({imageColorArray,drizzle,drizzleState,tokenSupply}) =>{
   
       for(let x=0; x<_tokenSupply;x++){
 
-        tokenId = await drizzle.contracts.CryptoConchasRinkeby.methods.tokenByIndex(x).call();
-        URL = await drizzle.contracts.CryptoConchasRinkeby.methods.tokenURI(tokenId).call();
+        tokenId = await contractState.methods.tokenByIndex(x).call();
+        URL = await contractState.methods.tokenURI(tokenId).call();
 
         await fetch(URL , {
           headers: {
@@ -72,10 +71,10 @@ const SortShowcase = ({imageColorArray,drizzle,drizzleState,tokenSupply}) =>{
 
   useEffect(() => {
     GetURL()
-  }, [drizzle]);
+  }, [accountAddress]);
 
   const sortedColorList = showcase.map((color,index) => 
-      <Nft color={color} drizzle={drizzle} drizzleState={drizzleState}/>
+      <Nft color={color} />
   );
 
   return(
@@ -101,7 +100,8 @@ const SortShowcase = ({imageColorArray,drizzle,drizzleState,tokenSupply}) =>{
 
 }
 
-const MintableShowcase = ({ drizzle, drizzleState }) => {
+const MintableShowcase = () => {
+  const {accountAddress, contractState, reload, setReload, totalSupply} = useContext(AppContext);
   
   const createNFTTransaction = async () => {
     // setLoading(true)
@@ -113,7 +113,7 @@ const MintableShowcase = ({ drizzle, drizzleState }) => {
 
 
         // const transaction =  await drizzle.contracts.CryptoConchasRinkeby.methods.mint(drizzleState.accounts[0]).send({from: drizzleState.accounts[0],value: Utils.toWei('0.25')});
-         const transaction =  await drizzle.contracts.CryptoConchasRinkeby.methods.mint(drizzleState.accounts[0]).send();
+         const transaction =  await contractState.methods.mint(accountAddress).send();
         
 
         await transaction.wait().then(result =>{

@@ -1,17 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
-import fleekStorage from '@fleekhq/fleek-storage-js';
-import { newContextComponents, AccountData } from "@drizzle/react-components";
+import React, { useState, useRef, useEffect,useContext } from "react";
 import "../assets/index.sass"
 import "../assets/loader.css"
-import { AppContext } from "./layout.js";
+import { AppContext } from "../App.js";
 
-const { ContractData } = newContextComponents;
-
-const Tokens = ({drizzle,drizzleState}) => {
-    
+const Tokens = () => {
+    const {accountAddress, contractState, reload, setReload, totalSupply} = useContext(AppContext);
     const GetURI = async (data) => {
     
-        const TotalSupply = await data.drizzle.contracts.CryptoConchasRinkeby.methods.totalSupply().call()
+        const TotalSupply = await contractState.methods.totalSupply().call()
         
     }    
 

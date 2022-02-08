@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { newContextComponents, AccountData } from "@drizzle/react-components";
-import { Jumbotron } from 'react-bootstrap';
+import React, { useState, useEffect, useContext } from "react";
 
 import TokenInventory from "./token.js";
 import Nft from './nft.js';
 
 import "../assets/minted.sass"
 import "../assets/animations.css";
+import { AppContext } from "../App.js";
 
-const { ContractData } = newContextComponents;
 
-const DisplayImage = ({backgroundColor,NftData,drizzle,drizzleState,tokenId}) => {
+const DisplayImage = ({backgroundColor,NftData,tokenId}) => {
+    const {accountAddress, contractState, reload, setReload, totalSupply} = useContext(AppContext);
     
     const [nftMetadata, setNftMetadata] = useState();
     const [owner, setOwner] = useState();
@@ -21,14 +20,14 @@ const DisplayImage = ({backgroundColor,NftData,drizzle,drizzleState,tokenId}) =>
   
     const GetURI = async (data) => {
       
-      const _owner = await drizzle.contracts.CryptoConchasRinkeby.methods.ownerOf(tokenId).call()
+      const _owner = await contractState.methods.ownerOf(tokenId).call()
     //   const _owner = undefined
       
       setOwner(_owner);
   
       if(data === "undefined") return [];
       
-      const nftURI = await drizzle.contracts.CryptoConchasRinkeby.methods.tokenURI(tokenId).call()
+      const nftURI = await contractState.methods.tokenURI(tokenId).call()
       console.log(nftURI)
     //   const nftURI = undefined
       
@@ -66,7 +65,7 @@ const DisplayImage = ({backgroundColor,NftData,drizzle,drizzleState,tokenId}) =>
     return (
         <div className="minted-individual-token" style={{background:backgroundColor}}>
             {nftMetadata?
-                <TokenInventory address={drizzle.contractList[0].address} owner={owner} metadata={nftMetadata} tokenId={tokenId} />
+                <TokenInventory address={accountAddress} owner={owner} metadata={nftMetadata} tokenId={tokenId} />
                 :<div class="lds-hourglass"></div>
             }
         </div>
@@ -74,7 +73,7 @@ const DisplayImage = ({backgroundColor,NftData,drizzle,drizzleState,tokenId}) =>
   
 }
 
-const Minted = ({drizzle, drizzleState}) =>{
+const Minted = () =>{
     
     const backgroundColor = ["#fb84ef","#ab2121","#663399","#4169e1","#ffffff","#ffff00","#2e8b57","#ff9c00","#ea0000","#13e9b5","#573a13","#19de2e","#000000","#ff0000"];
 
@@ -84,7 +83,7 @@ const Minted = ({drizzle, drizzleState}) =>{
 
             <h1>Conchas Minted and Baked</h1>
 
-            <ContractData
+            {/* <ContractData
                 drizzle={drizzle}
                 drizzleState={drizzleState}
                 contract="CryptoConchasRinkeby"
@@ -122,7 +121,7 @@ const Minted = ({drizzle, drizzleState}) =>{
                     </div>
                     );
                 }}
-            />
+            /> */}
         </div>
     )
     

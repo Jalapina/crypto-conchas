@@ -1,6 +1,6 @@
 {
-    "name":"Colorful Mayan",
-    "description":"Sweet",
-    "image":"https://storageapi.fleek.co/jalapina-team-bucket/nfts/conchas/mayan-colors-concha.png",
-    "background_color": "#000"
+	"name":"Bisque Concha",
+	"frosting":"Bisque",
+	"image":"https://storageapi.fleek.co/f1928932-f0bf-42e6-9993-dfe1c03a7c7a-bucket/images/bisque-concha.png",
+	"bread": "brown"
 }

@@ -5,6 +5,7 @@ import Conchas from "../images/crypto-conchas-logo.png"
 import mexicanConchas from "../images/mexican-colors-concha.png"
 import pinkConchas from "../images/pink-concha.png"
 import whiteConchas from "../images/white-concha.png"
+import Faq from "../components/faq"
 
 const sliptAddressText = (address) =>{
   return address.split("").splice(-6);
@@ -44,7 +45,7 @@ const About = () =>{
           </div>
 
           <p className="conchas-statement">This project is an ERC-721 smart contract running in the Ethereum Rinkeby testnet, I hope on launching in the mainnet very soon.</p>
-
+          <Faq/>
       </div>
     )
 }

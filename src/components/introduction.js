@@ -12,7 +12,7 @@ const sliptAddressText = (address) =>{
   return address.split("").splice(-6);
 }
 
-const Introduction = ({drizzle}) =>{
+const Introduction = () =>{
     
     return(
         <div className="introduction-container">
