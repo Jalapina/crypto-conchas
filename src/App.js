@@ -8,6 +8,7 @@ import Landing from './components/landing.js'
 import Introduction from './components/introduction.js'
 import Footer from './components/footer.js'
 import Header from './components/header.js'
+import About from './components/about.js'
 import NoWeb3 from './components/noWeb3.js'
 
 export const AppContext = React.createContext();
@@ -40,18 +41,21 @@ const App = () => {
     <Web3ReactProvider getLibrary={getLibrary}>
       <AppContext.Provider value={value}>
         <Router> 
+          <Header />
           <div>
             {accountAddress != undefined ?(
               <Layout accountAddress={accountAddress} contractState={contractState}/>
             ):(
               <Route exact path="/">
-                  <Header />
-                  <NoWeb3 />
                   <Introduction />
+                  <NoWeb3 />                  
                   <Landing />
               </Route>
             )}
           </div>
+            <Route path="/about">
+                <About />
+            </Route>
           <Footer />
         </Router>
       </AppContext.Provider>

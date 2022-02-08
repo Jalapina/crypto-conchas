@@ -56,7 +56,7 @@ const DisplayImage = ({contractState,accountAddress,index}) => {
   return (
       <div className="token-container">
         {nftMetadata?(
-          <Nft tokenId={tokenId} contractAddress={contractState.address} nftMetadata={nftMetadata} tokenOwner={accountAddress} />
+          <Nft tokenId={index} contractAddress={contractState.address} nftMetadata={nftMetadata} tokenOwner={accountAddress} />
         ):
         <div class="lds-hourglass"></div>
       }
@@ -91,6 +91,7 @@ const Inventory = () => {
 
   const createNFTTransaction = async () => {
     setLoading(true)
+    console.log(contractState)
     try {
         
         const transaction = await contractState.mint(1, {
@@ -100,10 +101,10 @@ const Inventory = () => {
 
         await transaction.wait().then(result =>{
           console.log(result)
-          setEmptyArray([])
-          getSupply()
         })
-
+        
+        setEmptyArray([])
+        getSupply()
         setLoading(false);
     } catch (e) {
         setLoading(false);

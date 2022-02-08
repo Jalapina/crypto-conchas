@@ -11,12 +11,12 @@ const sliptAddressText = (address) =>{
 }
 
 
-const Nft = ({color,nftMetadata}) => {
+const Nft = ({color,nftMetadata,tokenId}) => {
   const {accountAddress, contractState, reload, setReload, totalSupply} = useContext(AppContext);
   
   const [txQueue, setTxQueue] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const _tokenID = Number(tokenId)
   const[NftIsClicked, setNftIsClicked] = useState(false)
   const nftExpanded = React.useCallback(() => setNftIsClicked(!NftIsClicked));
   
@@ -99,7 +99,8 @@ const Nft = ({color,nftMetadata}) => {
             </div>
             
             <div className="token-options">
-              <h2 className="token-name">{nftMetadata.name}</h2>                  
+              <h2 className="token-name">{nftMetadata.name}</h2>
+              <a href={`https://testnets.opensea.io/assets/0x0840813925b376532171575bd5e122c860829c1f/${_tokenID}`}>OpenSea</a>
             </div>
 
           </div>

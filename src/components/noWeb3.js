@@ -1,4 +1,3 @@
-
 import React from "react";
 import opensea from "../images/opensea-logo.png"
 import rarible from "../images/rarible-logo.svg"
@@ -16,7 +15,8 @@ const NoWeb3 = () =>{
           <div className="info-marketplaces-wrapper">
             <div className="no-wallet-statement">
               <p className="slide-right">No wallet?</p> 
-              <p className="slide-right">No worries, view our Conchas on these marketplaces</p>
+              <p className="slide-right">No worries</p>
+              <p className="slide-right">View our Conchas on these marketplaces</p>
             </div>
             <div className="marketplaces-image-container">
               

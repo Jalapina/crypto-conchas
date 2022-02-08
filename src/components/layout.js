@@ -26,7 +26,6 @@ const Layout = ({ accountAddress }) => {
     return (
 
         <div className="layout-wrapper">
-            <Header accountAddress={accountAddress} />
 
             <Route exact path="/">
                 <Introduction/>
@@ -38,9 +37,6 @@ const Layout = ({ accountAddress }) => {
                 <Account accountAddress={accountAddress} />
             </Route>
             
-            <Route path="/about">
-                <About />
-            </Route>
         </div>
     )
 }

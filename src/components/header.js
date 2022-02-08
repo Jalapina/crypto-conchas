@@ -1,5 +1,6 @@
 import React, {useEffect,useState, useContext} from "react";
 import "../assets/header.sass"
+import "../assets/animations.css"
 import { ethers } from "ethers";
 import { Link } from "react-router-dom";
 import { Web3ReactProvider, useWeb3React, UnsupportedChainIdError } from '@web3-react/core'
@@ -18,6 +19,7 @@ const Header = () => {
     let cryptoConchasRinkeby = undefined;
     
     const loadBlockchainData = async() => {
+      console.log("Loading")
       try {
         await activate(injected);
         if(active){
@@ -26,6 +28,7 @@ const Header = () => {
           cryptoConchasRinkeby = new ethers.Contract("0x66c77D082cfDf7EdEDb8330a335257b2f558F481", CryptoConchasRinkeby.abi, provider.getSigner());
           const totalSupply = await cryptoConchasRinkeby.totalSupply()
           setTotalSupply(Number(totalSupply))
+          console.log(cryptoConchasRinkeby)
           setContractState(cryptoConchasRinkeby);
         }
       } catch (ex) {
@@ -38,7 +41,7 @@ const Header = () => {
     
     useEffect(()=>{
       loadBlockchainData();
-    },[])
+    },[active])
   
   
     const sliptAddressText = (address) =>{
@@ -57,7 +60,7 @@ const Header = () => {
                 )
               }else{
                 return(         
-                    <div className="connect-wallet-container">
+                    <div className="text-pop-up-top connect-wallet-container">
                         <h1 onClick={loadBlockchainData} className="other-font">Connect Wallet</h1>
                     </div>       
                   )
