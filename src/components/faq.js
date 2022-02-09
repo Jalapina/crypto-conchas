@@ -14,10 +14,7 @@ const Faq = () =>{
         <div className="faq-container">
         
             <div className="wave">
-                {/* <div class="ocean"> */}
-                {/* <div class="wave"></div> */}
-                {/* <div class="wave"></div> */}
-                {/* </div>  */}
+
             </div>
 
             <div className="faq-header">
@@ -30,9 +27,17 @@ const Faq = () =>{
                         <h2>How do I get one?</h2>
                     </div>
                     <div className="faq-answer">
-                        <p>
-                        <span className="bold-text">Tree roots intrusion</span>, roots will grow into joints and create a nest inside the pipe and catch toilet paper, human feces that will eventually create a sewer backup.
-                        </p>
+                    <ul>
+                        <li>
+                            Download and install a Chrome browser plugin called <a href="https://metamask.io/">MetaMask</a>. This will allow websites (that you authorize) access to your Ethereum account.
+                        </li>
+                        <li>
+                            If on mobile, try using the <a href="https://www.coinbase.com/wallet">Coinbase Wallet browser</a>
+                        </li>
+                        <li>
+                            Once you have the plugin installed, or are using the Coinbase web3 brower this website will recognize it and then display a buy(Mint) button along with your inventory.
+                        </li>
+                    </ul>
                     </div>
                 </div>
     
@@ -41,22 +46,36 @@ const Faq = () =>{
                     
                         <h2>What's an NFT?</h2>
                     </div>
-                    <div className={`faq-answer faq-answer{}`}>
-                    <p>
-                        To check the conditions of the sewer line. A sewer line scoping will reveal its current condition and can help you identify potential issues to avoid costly surprises in the future.
-                    </p>
+                    <div className="faq-answer">
+                    <ul>
+                        <li>
+                            Non-fungible token or NFT is a unique token that points to WHATEVER YOU WANT, usually a url of a picture | video or a concha.
+                        </li>
+
+                        <li>
+                            NFT's usally have one owner and can be verified on the ledger.
+                        </li>
+                            
+                        <li>
+                            A Non-fungible token cannot be dubplicated and is stored in the blockchain.
+                        </li>
+                    </ul>
                     </div>
                 </div>
     
                 <div className="faq">
                     <div className="faq-question">
-                    
-                        <h2>How to get a crypto wallet.</h2>
+                        <h2>How to get a crypto wallet</h2>
                     </div>
-                    <div className={`faq-answer faq-answer{}`}>
-                    <p>
-                        Flushing undissolvable items down the toilet like <span className="bold-text">baby wipes, femal e products, or paper towels</span>. These items can eventually cause a backup when they begin to accumulate and catch other debri.
-                    </p>
+                    <div className="faq-answer">
+                    <ul>
+                        <li>
+                            Download and install <a href="https://metamask.io/">MetaMask</a> if you're on chrome or a suitable alternative.
+                        </li>
+                        <li>
+                            If on mobile, try using the <a href="https://www.coinbase.com/wallet">Coinbase Wallet</a>
+                        </li>
+                    </ul>
                     </div>
                 </div>
             
@@ -65,10 +84,24 @@ const Faq = () =>{
                     
                         <h2>What's the blockchain?</h2>
                     </div>
-                    <div className={`faq-answer faq-answer{}`}>
-                    <p>
-                        When you have a backup. Slow draining water is a symptoms that you might have blockage due to <span className="bold-text">tree roots, build up, or misalignments</span>
-                    </p>
+                    <div className="faq-answer">
+                    <ul>
+                        <li>
+                            The blockchain is a distributed database (Used to store data).
+                        </li>
+                        <li>
+                            The data stored on a blockchain are cryptocurrency transactions.
+                        </li>
+                        <li>
+                            Blockchains store data (transactions) in chronological groups, known as blocks, instead of folders and tables like normal databases. 
+                        </li>
+                        <li>
+                            Bitcoin | Ethereum & Solana's blockchain is open and accessible to anyone, unlike a centralized database run by a company.
+                        </li>
+                        <li>
+                            Unlike databases where information can be added, removed or edited, blockchains can only be added to.
+                        </li>
+                    </ul>
                     </div>
                 </div>
 
@@ -77,9 +110,13 @@ const Faq = () =>{
                     
                         <h2>What are conchas?</h2>
                     </div>
-                    <div className={`faq-answer faq-answer{}`}>
+                    <div className="faq-answer">
                     <p>
-                        Hydrojetting is used when there is large amounts of roots or sludge in the line, for example accumulation of <span className="bold-text">grease, human feces, and toilet paper</span>. This method is used when the power rodding does not remove the clog.
+                        Conchas get their name from their round shape and striped seashell(concha in spanish) like appearance. A concha consists of two parts, a sweetened bread roll, and a crunchy topping.
+                    </p>
+                    <p>
+                        Conchas are a Mexican style sweet bread that was orignially inspiration by Brioche, but somewhere along the way we decided to make it fun and added colorful sugar on top and now rest is history.
+                        You can find conchas all over North America at any Mexican bakery (Probably just in Mexico and the U.S 😬)
                     </p>
                     </div>
                 </div>
@@ -88,10 +125,16 @@ const Faq = () =>{
                     
                         <h2>How to make conchas</h2>
                     </div>
-                    <div className={`faq-answer faq-answer{}`}>
+                    <div className="faq-answer">
                     <p>
-                        There is a <span className="bold-text">P-trap</span> underneath the floor in a <span className="bold-text">U</span> shape that holds the water, the purpose of the water inside the P-trap is to prevent sewer gases from coming up. If you smell sewer gases, check your floor drains for water. If they are empty simply add water.
+                        Easy, all you need it flour | butter | milk | eggs and baking powder
                     </p>
+                    <a className="recipe-link" href="https://www.mexicoinmykitchen.com/concha-recipe/">
+                        Concha recipe
+                    </a>
+                    <a className="recipe-link" href="https://www.youtube.com/watch?v=cCX3fqfEfZg">
+                        Concha video recipe (Spanish)
+                    </a>
                     </div>
                 </div>
                 <div className="faq">
@@ -99,9 +142,12 @@ const Faq = () =>{
                     
                         <h2>Who are we?</h2>
                     </div>
-                    <div className={`faq-answer faq-answer{}`}>
+                    <div className="faq-answer">
                     <p>
-                        <span className="bold-text">Your P-traps is dry</span> or an exposed pipe with no P-trap or no cap on.  With no water in the P-trap, there is nothing to hold the sewer gases. Simply add water.
+                        We're a small team of developers trying to build cool things on the internet.
+                    </p>
+                    <p>
+                        We believe in web3 and see a future where everyone utilizes it. We want to be part of building that future.
                     </p>
                     </div>
                 </div>

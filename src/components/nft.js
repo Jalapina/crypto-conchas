@@ -22,66 +22,6 @@ const Nft = ({color,nftMetadata,tokenId}) => {
   
   let history = useHistory();
 
-  // const createNFTTransaction = async (hash,publicUrl) => {
-        
-  //     const tokenURI = publicUrl;
-    
-  //     const removeFromQueue = () => {
-  //       const newTxQueue = txQueue.filter((uri) => uri !== tokenURI);
-  //       setTxQueue(newTxQueue);
-  //     };
-    
-  //     try {
-  //       setTxQueue([...txQueue, tokenURI]);
-
-  //       await contractState.methods.mint(hash,publicUrl).send({from: accountAddress});
-
-  //     }catch(e) {
-  //         console.error(e);
-  //         removeFromQueue(tokenURI);
-  //         setLoading(false);
-  //         return history.push("/mintable");
-  //       }
-  // };
-
-  // const handleButtonClick = async (newTokenId) => {
-
-  //   try {
-  //     const date = new Date();
-  //     const timestamp = date.getTime();
-      
-  //     const { hash } = await fleekStorage.upload({
-  //       apiKey: "5p1Nxgb8eIEOEYjwduM4Fg==",
-  //       apiSecret: "HC4pKXrmEITQwS0bC9fXwrbiPnwEhfUcXoao7JoHCu8=",
-  //       key: `nft/${newTokenId}-${timestamp}`,
-  //       data: "https://storageapi.fleek.co/jalapina-team-bucket/nft/conchas/"+color+"-concha.png",
-  //     });
-
-  //     const url = {
-  //       name: color,
-  //       color: color,
-  //       description: color+" Concha.",
-  //       image_url: "https://storageapi.fleek.co/jalapina-team-bucket/nft/conchas/"+color+"-concha.png",
-  //       hash: hash
-  //     }
-
-  //     const { publicUrl } = await fleekStorage.upload({
-  //       apiKey: "5p1Nxgb8eIEOEYjwduM4Fg==",
-  //       apiSecret: "HC4pKXrmEITQwS0bC9fXwrbiPnwEhfUcXoao7JoHCu8=",
-  //       key: `nft/${newTokenId}-${timestamp}`,
-  //       data: JSON.stringify(url),
-  //     });
-      
-  //     setLoading(false);
-  //     await createNFTTransaction(hash,publicUrl);
-  //     return history.push("/");
-  //   } catch (e) {
-  //     console.error(e);
-  //     setLoading(false);
-  //     return history.push("/mintable");
-  //   }
-  // };
-
   return (
     <div className="none-minted-token-container">
 
@@ -100,7 +40,7 @@ const Nft = ({color,nftMetadata,tokenId}) => {
             
             <div className="token-options">
               <h2 className="token-name">{nftMetadata.name}</h2>
-              <a href={`https://testnets.opensea.io/assets/0x0840813925b376532171575bd5e122c860829c1f/${_tokenID}`}>OpenSea</a>
+              <a href={`https://testnets.opensea.io/assets/0x66c77d082cfdf7ededb8330a335257b2f558f481/${_tokenID}`}>OpenSea</a>
             </div>
 
           </div>

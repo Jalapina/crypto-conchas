@@ -20,13 +20,12 @@ const Introduction = () =>{
           <div className="conchas-introduction-statement">
             <div>
               <p className="first-statement">
-                Crypto Conchas is a digital collection of the most delicious Mexican sweet bread
-                known to everyone.
+                Crypto Conchas is a digital collection of a declicous Mexican baked pastry. We want them to exist in the blockchain where they will stay delicious forever
               </p>
             </div>
             <div className="white-background">
               <p>
-                Our mission is to introduce the new concepts of the internet to the latino community, the blockchain will take these delicious Conchas into the future.
+                Our mission is to introduce the new concepts of web3 to different communities and help break communication barriers
               </p>
             </div>
           </div>

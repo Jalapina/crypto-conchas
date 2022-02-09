@@ -84,27 +84,26 @@ const Inventory = () => {
           tokenIndex++
           setEmptyArray(oldArray => [...oldArray, supply[tokenIndex]]);
         }
-    }catch(err){
-      return console.log(err)
+      }catch(err){
+        return console.log(err)
+      }
     }
-  }
-
-  const createNFTTransaction = async () => {
-    setLoading(true)
-    console.log(contractState)
-    try {
+    
+    const createNFTTransaction = async () => {
+      setLoading(true)
+      console.log(contractState)
+      try {
         
         const transaction = await contractState.mint(1, {
           value: '10000000000000000',
           gasLimit: 9000000
         });
-
+        
         await transaction.wait().then(result =>{
           console.log(result)
+          setEmptyArray(oldArray => [...oldArray, result.transactionIndex]);
         })
         
-        setEmptyArray([])
-        getSupply()
         setLoading(false);
     } catch (e) {
         setLoading(false);
