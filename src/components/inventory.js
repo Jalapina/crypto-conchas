@@ -81,10 +81,10 @@ const Inventory = () => {
     let count = 0;
 
     while(count < 5){
-      count++
       if(emptyArray.length<totalSupply){
         setEmptyArray(oldArray => [...oldArray, ""]);
       }
+      count++
     }
 
   }
@@ -139,7 +139,7 @@ const Inventory = () => {
               if(emptyArray.length>0){
                 return(
                   <div className="token-image-container" >
-                    <p className="other-font">The Minted Bakery</p>
+                    <p className="other-font">Minted Bakery</p>
                     <p className="other-font">
                       {totalSupply}/10000
                     </p>

@@ -32,7 +32,7 @@ const Landing = () => {
               <img src={concha}/>
             </div>
             <div class="timeline__event__date">
-              20-08-2019
+              02-22-2022
             </div>
             <div class="timeline__event__content ">
               <div class="timeline__event__title">
@@ -49,7 +49,7 @@ const Landing = () => {
               <img src={Cornsilk}/>              
             </div>
             <div class="timeline__event__date">
-              20-08-2019
+              05-05-2022
             </div>
             <div class="timeline__event__content">
               <div class="timeline__event__title">
@@ -67,7 +67,7 @@ const Landing = () => {
               <i class="lni-slim"></i>
             </div>
             <div class="timeline__event__date">
-              20-08-2019
+              20-08-2022
             </div>
             <div class="timeline__event__content">
               <div class="timeline__event__title">
@@ -85,7 +85,7 @@ const Landing = () => {
               <img src={royal}/>
             </div>
             <div class="timeline__event__date">
-              20-08-2019
+              20-08-2022
             </div>
             <div class="timeline__event__content">
               <div class="timeline__event__title">
