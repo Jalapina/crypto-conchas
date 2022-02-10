@@ -4,16 +4,21 @@
     background: #fbd7a1
     font-size: 1.7em
     color: #ffffff
+    h2
+        color: #000000
+    .token-options
+        width: 41
+        font-family: 'Bounties'   
 .account-address
     font-size: 2em
     font-family: 'Superfats'
 .token-name
     font-family: Bounties
     margin-bottom: 20px
-.account-information
 .account-collection-container
     display: inline-block
     vertical-align: top
+    overflow: hidden
     position: relative
     padding: 20px
     margin: 20px
@@ -22,3 +27,18 @@
     background: #ffce85
     box-shadow: 6px 5px 60px #dfb16c, 2px 0px 3px #edaf51
     height: 350px
+.account-collection-container:before
+    content: ''
+    position: absolute
+    top: 0
+    left: -300px
+    width: 100%
+    height: 100%
+    background: rgba(255, 255, 255, 0.3)
+    transform: skewX(-30deg)
+    transition: 0.3s 
+
+.account-collection-container:hover:before
+    left: 250px
+    background: rgba(255, 255, 255, 0.2)
+

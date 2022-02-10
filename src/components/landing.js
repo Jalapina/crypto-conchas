@@ -39,7 +39,7 @@ const Landing = () => {
                 Launch
               </div>
               <div class="timeline__event__description">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
+                <p>Crypto conchas will launch with an a mint amount of 10,000 tokens!</p>
               </div>
             </div>
           </div>
@@ -56,7 +56,7 @@ const Landing = () => {
                 Winner
               </div>
               <div class="timeline__event__description">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
+                <p>Winner of the raffel will be announced</p>
               </div>
             </div>
           </div>
@@ -74,7 +74,7 @@ const Landing = () => {
                 Giveaway
               </div>
               <div class="timeline__event__description">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
+                <p>We will give out free conchas</p>
               </div>
 
             </div>
@@ -92,7 +92,7 @@ const Landing = () => {
                 Evolution
               </div>
               <div class="timeline__event__description">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
+                <p>If intial tokens sell out we will work on new and eveolved conchas that will go out for free to any of the first 1k mint</p>
               </div>
             </div>
           </div>

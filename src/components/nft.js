@@ -11,7 +11,7 @@ const sliptAddressText = (address) =>{
 }
 
 
-const Nft = ({color,nftMetadata,tokenId}) => {
+const Nft = ({color,nftMetadata,tokenId,background}) => {
   const {accountAddress, contractState, reload, setReload, totalSupply} = useContext(AppContext);
   
   const [txQueue, setTxQueue] = useState([]);
@@ -25,7 +25,7 @@ const Nft = ({color,nftMetadata,tokenId}) => {
   return (
     <div className="none-minted-token-container">
 
-      <div className={`nft ${menuStyles.menu} ${ NftIsClicked ? `${menuStyles.open}` : ""}`}>
+      <div style={{background:background}} className={`nft ${menuStyles.menu} ${ NftIsClicked ? `${menuStyles.open}` : ""}`}>
         
         <div className="close-icon-wrapper">
           <img onClick={nftExpanded} className="close-icon" width="40px" src={closeIcon}/>
@@ -35,12 +35,12 @@ const Nft = ({color,nftMetadata,tokenId}) => {
           <div className="modal-container">
 
             <div className="nft-image-focus">
-              <img className="artwork" width="60%" src={nftMetadata.image} />
+              <img className="" width="60%" src={nftMetadata.image} />
             </div>
             
             <div className="token-options">
               <h2 className="token-name">{nftMetadata.name}</h2>
-              <a href={`https://testnets.opensea.io/assets/0x66c77d082cfdf7ededb8330a335257b2f558f481/${_tokenID}`}>OpenSea</a>
+              <a style={{color:"#000", background:nftMetadata.frosting}} href={`https://testnets.opensea.io/assets/0x66c77d082cfdf7ededb8330a335257b2f558f481/${_tokenID}`}>OPENSEA</a>
             </div>
 
           </div>

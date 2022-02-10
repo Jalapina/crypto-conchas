@@ -57,7 +57,7 @@ const DisplayImage = ({contractState,accountAddress,index}) => {
   }, [index]);
   
   return (
-      <div className="account-collection-container">
+      <div onClick={nftExpanded} className="account-collection-container">
         {nftMetadata?(
           <div className="nft-container">
 
@@ -71,19 +71,19 @@ const DisplayImage = ({contractState,accountAddress,index}) => {
                 <div className="modal-container">
 
                   <div className="nft-image-focus">
-                    <img className="artwork" width="200px" src={nftMetadata.image} />
+                    <img width="200px" src={nftMetadata.image} />
                   </div>
                   
                   <div className="token-options">
-                    <h2>{nftMetadata.name}</h2>
+                    <h2 className="token-name">{nftMetadata.name}</h2>
+                    <a href={`https://testnets.opensea.io/assets/0x66c77d082cfdf7ededb8330a335257b2f558f481/${index}`}>OPENSEA</a>
                   </div>
-
                 </div>
               ): ""}
           </div>
 
-          <h2 className="token-name">{nftMetadata.name}</h2>      
-          <img onClick={nftExpanded} className="artwork" width="200px" height="200px" src={nftMetadata.image} alt="Token Image"/>
+          <h2 style={{fontFamily:"Bounties"}}>{nftMetadata.name}</h2>      
+          <img  width="200px" height="200px" src={nftMetadata.image} alt="Token Image"/>
 
         </div>
         ):
@@ -144,22 +144,22 @@ const Account = () => {
           getContractName();
       }
 
-  },[accountAddress])
+  },[accountAddress,contractState])
 
   return (
         
     <div className="account">
         <div className="account-information">
-            <p className="account-address">Address: {sliptAddressText(accountAddress)}</p>
+            <p className="account-address">Address </p><p className="account-address" style={{color:"#000"}}>{sliptAddressText(accountAddress)}</p>
         </div>
         {emptyArray.length>0 ?(
             
             emptyArray.map((something, index)=>{
                 return (
-                    <DisplayImage
-                        index={something}
-                        accountAddress={accountAddress}
-                        contractState={contractState} />
+                  <DisplayImage
+                    index={something}
+                    accountAddress={accountAddress}
+                    contractState={contractState} />
                 )}
             )
         ):(
